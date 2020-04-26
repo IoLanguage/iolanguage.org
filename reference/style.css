@@ -51,6 +51,10 @@ pre {
     margin-left: 30px;
 }
 
+.index {
+    letter-spacing: 0.05em;
+}
+
 .category {
     width: 100%;
     font-size: 0px;
