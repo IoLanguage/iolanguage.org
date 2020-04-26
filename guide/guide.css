@@ -1,16 +1,21 @@
+/*
 @font-face {
     font-family: "DefaultSans";
     src: url("/fonts/OpenSans-Light.ttf")
 }
+*/
 
 
 ::-webkit-scrollbar {
     width: 15px;
     height: 15px;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar-track-piece  {
-    background-color: #191919;
+    background-color: transparent;
+    border: none;
+
 }
 
 ::-webkit-scrollbar-thumb:vertical {
@@ -19,7 +24,7 @@
 
 
 body, td {
-    font-family: "Helvetica Neue", "DefaultSans", sans-serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Sans';
     font-size: 14px;
     line-height: 20px;
     font-style: normal;
@@ -82,7 +87,6 @@ h2 {
 }
 
 h3 {
-    postion: absolute;
     color: #000;
     font-family: 'Helvetica Neue', 'Helvetica', 'Sans';
     font-size: 20px;
@@ -110,24 +114,22 @@ h4 {
   vertical-align: text-top;
 }
 
-td 
-{
+td {
   vertical-align: text-top;
   font-weight: 300;
 }
 
-pre 
-{
+pre {
     /*word-break:break-all;*/
     word-wrap: break-word;
 
     white-space: pre;
     color: #666;
     font-family: 'Inconsolata', 'Courier', monspace;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0;
-    line-height: 17px;
+    line-height: 16px;
 
     padding-top: 15px;
     padding-left: 23px;
@@ -139,15 +141,13 @@ pre
     vertical-align: top;
 }
 
-.infoTable
-{
+.infoTable {
 	margin-left: 1.5em;
 	margin-top: 2em;
 	margin-bottom: 2em;
 }
 
-.infoTable td
-{
+.infoTable td {
 	font-weight: normal;
 	padding-right: 1em;
 }
@@ -180,8 +180,10 @@ code {
 
 /* -------------------------------------------- */
 
+/*
 .index {
 }
+*/
 
 .header {
     border: 0px solid #ccc;
