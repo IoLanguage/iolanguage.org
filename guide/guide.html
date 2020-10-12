@@ -553,6 +553,13 @@ account balance println
 1 +(2 *(3)) +(4)
 </pre> User defined operators (that don't have a standard operator name) are performed left to right.
 
+<h4>OperatorTable</h4>
+
+Operators can also be added or removed, or have their precedence changed by using the global OperatorTable object. For example:
+
+<pre>OperatorTable addOperator("!!", 3)</pre>
+
+adds the !! operator with a precedence of 3. Note that this change will not effect the source file in which the OperatorTable is modified as the full file is parsed before it is evaluated.
 
 
 
