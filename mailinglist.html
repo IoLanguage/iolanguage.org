@@ -14,11 +14,21 @@
 				color: #fff;
 			}
 
-			.message {
+			.messagesElement {
 				font-family: Helvetica, Arial;
+				max-width: 100%; 
+				margin-right: 1em;
+				font-size: 15px;
+				line-height: 1.2em;
+				color: #aaa;
+				transition: opacity 0.6s;
+			}  
+
+			.message {
 				font-size: 15px;
 				line-height: 1.2em;
 				color: #ccc;
+
 				margin-top: 1em;
 				padding-bottom: 0.5em;
 				border-bottom: 1px solid #999;
@@ -37,11 +47,21 @@
 				margin-left: 2em;
 			}
 
-			.content {
-				margin-left: 0px;
-				white-space: pre;
-				padding-top: 0px;
-				padding-bottom: 0em;
+			.menu {
+
+			}
+
+			.menuItem {
+				display: inline-block;
+				padding-right: 1em;
+				color: #aaa;
+			}
+
+			.menuItemSelected {
+				display: inline-block;
+				padding-right: 1em;
+				font-weight: bold;
+				color: white;
 			}
 
 		</style>
@@ -55,12 +75,11 @@
     					<div class="pageSubtitle"> / mailing list archive </div>
     			    </div>
     			</div>
+
+				<div id="menu"></div>
     			<br>
 
-				<div class="text" style="border: 0px solid #f00; max-width:100%; margin-right: 10px; font-size: 0px;">  
-					<div id="messagesElement">
-					loading...
-	                </div>
+					<div id="messagesElement" class="messagesElement"></div>
 			</div>
         </div>
 	</body>

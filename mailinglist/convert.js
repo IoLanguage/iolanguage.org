@@ -1,5 +1,7 @@
 
-var fs = require('fs');
+const fs = require('fs');
+
+// --------------------------------------------------------
 
 Object.defineSlot = function(obj, slotName, slotValue) {
     const descriptor = {
@@ -21,86 +23,179 @@ Object.defineSlot(String.prototype, "after", function (aString) {
     return this.slice(index + aString.length);
 })
 
-class Mbox {
+// --------------------------------------------------------
+
+class LineFile {
+
+    init () {
+        this._lines = null
+        this._index = 0
+        return this
+    }
 
     setPath (aString) {
         this._path = aString
         return this
     }
 
-    run () {
-        this.read()
-        this.convert()
-        this.write()
-    }
-
     read () {
         var options = { encoding:'utf-8', flag:'r' };
-        this._inData = fs.readFileSync(this._path, options);
+        console.log("reading '" + this._path + "'")
+        const data = fs.readFileSync(this._path, options);
+        console.log("read " + data.length + " bytes")
+        this._lines = data.split("\n")
         return this
     }  
 
-    convert () {
-        this._messages = []
-        const chunks = this._inData.split("\n\nFrom ")
-        chunks.forEach((chunk) => {
-            this.handleChunk(chunk)
-        })
-
-        this._outData = "window.archive = " + JSON.stringify(this._messages, 2, 2)
-        return this
+    currentLine () {
+        if (this._index === this._lines.length) {
+            return null
+        }
+        return this._lines[this._index]
     }
 
-    handleChunk (chunk) {
-        const message = { 
+    nextLine () {
+        if (this._index < this._lines.length) {
+            this._index ++
+        }
+        return this.currentLine()
+    }
+
+    previousLine () {
+        if (this._index > 0) {
+            this._index --
+        }
+        return this.currentLine()
+    }
+
+}
+
+// -----------------------------
+
+class MboxMessage {
+
+    init () {
+        this._dict = {
             from: null,
             subject: null,
             date: null,
             content: ""
         }
+        return this
+    }
 
+    dict () {
+        return this._dict
+    }
 
-        const lines = chunk.split("\n")
-        let inContent = false
+    readLineFile (lineFile) {
+        while (this.readHeader(lineFile)) {
+        }
+    
+        while (this.readContent(lineFile)) {
+        }
+    }
 
-        for (let i = 0; i < lines.length; i ++) {
-            const line = lines[i]
+   readHeader (lineFile) {
+        const dict = this._dict
+        const line = lineFile.currentLine()
 
-            if (line.indexOf("From: ") === 0) {
-                message.from = line.after("From: ")
-            }
-
-            if (line.indexOf("Message-ID:") === 0) {
-                message.id = line.after("Message-ID:")
-            }
-
-            if (line.indexOf("Subject: ") === 0) {
-                message.subject = line.after("Subject: ")
-            }
-
-            if (line.indexOf("Date: ") === 0) {
-                message.date = line.after("Date: ")
-            }
-
-            if (line.indexOf("X-Yahoo-Profile:") === 0) {
-                inContent = true
-            } else {
-                if (inContent) {
-                    message.content += line + "\n"
-                }
-            }
+        if (line.indexOf("From: ") === 0) {
+            dict.from = line.after("From: ")
         }
 
-        this._messages.push(message)
+        if (line.indexOf("Message-ID:") === 0) {
+            dict.id = line.after("Message-ID:")
+        }
+
+        if (line.indexOf("Subject: ") === 0) {
+            dict.subject = line.after("Subject: ")
+        }
+
+        if (line.indexOf("Date: ") === 0) {
+            dict.date = line.after("Date: ")
+        }
+
+        if (this.lineIsHeaderEnd(line)) {
+            lineFile.nextLine()
+            return false
+        }
+
+        lineFile.nextLine()
+        
+        return true
+    }
+
+    readContent (lineFile) {
+        const line = lineFile.currentLine()
+
+        if (line === null || this.lineIsHeaderStart(line)) {
+            return false
+        }
+        
+        this._dict.content += line + "\n"
+        lineFile.nextLine()
+        return this
+    }
+
+    lineIsHeaderStart (line) {
+        const parts = line.split(" ")
+        const isStart = (parts[0] === "From" && parts.length === 7)
+        return isStart
+    }
+
+    lineIsHeaderEnd (line) {
+        return (line.indexOf("X-Yahoo-Profile:") === 0)
+    }
+
+}
+
+// -------------------------------------
+
+class Mbox {
+
+    init () {
+        this._lineFile = new LineFile().init()
+        this._messages = []
+        return this
+    }
+
+    setPath (aString) {
+        this._path = aString
+        return this
+    }
+
+    path () {
+        return this._path
+    }
+
+    run () {
+        this._lineFile.setPath(this.path()).read()
+        this.convert()
+        this.write()
+    }
+
+    convert () {
+        this._messages = []
+
+        while (this._lineFile.currentLine() ) {
+            const message = new MboxMessage().init()
+            this._messages.push(message)
+            message.readLineFile(this._lineFile)           
+        }
+
+        return this
     }
 
     write () {
+        this._outData = "window.archive = " + JSON.stringify(this._messages.map(msg => msg.dict()), 2, 2)
         var options = { encoding:'utf-8', flag:'w' };
         fs.writeFileSync("archive.js", this._outData, options);
         return this
     }
 }
 
-const mbox = new Mbox()
+
+const mbox = new Mbox().init()
 mbox.setPath("archive.mbox")
 mbox.run()

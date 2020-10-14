@@ -1,4 +1,4 @@
-
+// quick and dirty test
 
 var cleanDiv = document.createElement("div");
 
@@ -24,86 +24,154 @@ function cleanDate(s) {
 	return d
 }
 
-function main() {
-	const messagesElement = document.getElementById("messagesElement");
+function addMenuItem(name) {
+	const menu = document.getElementById("menu");
+
+	var menuItem = document.createElement("div")
+	menuItem.className = "menuItem"
+	menuItem.innerHTML = name
+	menuItem.onclick = function(event) {
+		showMenuItem(this)
+	}
+	menu.appendChild(menuItem)
+	return menuItem
+
+}
+
+function yearForMessage(message) {
+	const parts = message.date.split(" ")
+	if (parts.length === 6) {
+		const year = parts[3]
+		return year
+	}
+	return null
+}
+
+function assert(v) {
+	if (!v) {
+		throw new Error("assertation failed")
+	}
+} 
+
+function setupMenu() {
+	const menu = document.getElementById("menu");
+	const years = new Map()
+	archive.forEach((message) => {	
+		if (!messageIsValid(message)) {
+			return
+		}
+
+		const year = this.yearForMessage(message)
+		if (year) {
+			var menuItem = years.get(year)
+			if (!menuItem) {
+				menuItem = this.addMenuItem(year)
+				menuItem._messages = []
+				years.set(year, menuItem)
+				//console.log(year, " menuItem._messages = ", menuItem._messages)
+			}
+			menuItem._messages.push(message)
+			menuItem.data = 123
+			//console.log(year, " menuItem._messages = ", menuItem._messages.length)
+
+			assert(menuItem._messages.length > 0)
+		}
+	})
 	
-	//console.log("archive.length = " + archive.length)
-	let i = 0
-	archive.forEach((message) => {
-		i ++
-		if (message.content.length === 0) { return }
-		if (message.content.length > 10000) { return }
-		if (message.content.indexOf("_NextPart_") !== -1) { return }
-		if (message.content.indexOf("Content-Transfer-Encoding: base64") !== -1) { return }
-		if (message.content.indexOf("Content-Type: text/html") !== -1) { return }
-		if (message.content.indexOf("redirect") !== -1) { return }
-		if (message.content.indexOf("subject") !== -1) { return }
-		//if (i > 657) { return }
+	//console.log("years: ", years.values())
+}
 
+function main() {
+	this.setupMenu()
+	return
+}
 
-		/*
+function menuItems() {
+	const menuItems = []
+	const menu = document.getElementById("menu");
+	for (let i = 0; i < menu.children.length; i++) {
+		menuItems.push(menu.children[i])
+	}
+	return menuItems
+}
+
+function unselectMenuItems() {
+	menuItems().forEach(menuItem => menuItem.className = "menuItem")
+}
+
+function showMenuItem(menuItem) {
+	unselectMenuItems()
+	menuItem.className = "menuItemSelected"
+	const messagesElement = document.getElementById("messagesElement");
+	//messagesElement.innerHTML = "...."
+	messagesElement.style.opacity = 0.1
+	setTimeout(() => showMenuItem2(menuItem), 0)
+}
+
+function messageIsValid(message) {
+	if (message.content.length === 0) { return false }
+	if (message.content.length > 10000) { return false }
+	if (message.content.indexOf("_NextPart_") !== -1) { return false }
+	if (message.content.indexOf("Content-Transfer-Encoding: base64") !== -1) { return false }
+	if (message.content.indexOf("Content-Type: text/html") !== -1) { return false }
+	if (message.content.indexOf("redirect") !== -1) { return false }
+	if (message.content.indexOf("subject") !== -1) { return false }
+	return true
+}
+
+function showMenuItem2(menuItem) {
+	const messages = menuItem._messages
+	const messagesElement = document.getElementById("messagesElement");
+	//messagesElement.innerHTML = ""
+
+	const divStrings = messages.map((message) => {
 		let s = ""
 		s += "<div class=message>\n"
-		s += "	<div class=header>\n"
-		//if (message.id) {
-		//	s += "	<a name='" + cleanString(message.id) + "'></a>\n"
-		//	s += "	<div class=from>Id: " + cleanString(message.id) + "</div>\n"
-		//}
-		s += "		<div class=from>From: " + cleanString(message.from) + "</div>\n"
-		s += "		<div class=subject>Subject: " + message.subject + "</div>\n"
-		if (message.date) {
-			s += "		<div class=date>Date: " + cleanDate(message.date) + "</div>\n"
-		}
-		s += "	</div>\n"
-		
-		s += "	<div class=content>" + message.content + "</div>\n"
-		s += "</div>\n"
-		*/
-
-		let s = ""
-		s += "<div class=message>\n"
-		/*
-		s += "	<div class=header>\n"
-		//if (message.id) {
-		//	s += "	<a name='" + cleanString(message.id) + "'></a>\n"
-		//	s += "	<div class=from>Id: " + cleanString(message.id) + "</div>\n"
-		//}
-		s += "		<div class=from>From: " + cleanString(message.from) + "</div>\n"
-		s += "		<div class=subject>Subject: " + message.subject + "</div>\n"
-		if (message.date) {
-			s += "		<div class=date>Date: " + cleanDate(message.date) + "</div>\n"
-		}
-		s += "	</div>\n"
-		*/
-		s += "<div class=content>" 
-		s += "<div class=messageHeader>"
-		//s += "<b>"
-		s += "Subject: " + cleanString(message.subject) + "\n"
-		s += "From: " + cleanString(message.from)+ "\n"
-		if (message.date) {
-			s += "Date: " + cleanString(message.date)+ "\n"
-		}
-		//s += "</b>"
-
+			s += "<div class=messageHeader>"
+				s += "Subject: " + message.subject+ "\n"
+				s += "From: " + message.from+ "\n"
+				s += "Date: " + message.date + "\n"
+			s += "</div>"
+			s += "<div class=messageContent>"
+				s += message.content 
+			s += "</div>"
 		s += "</div>"
-		s += "<div class=messageContent>"
-		s += message.content 
-		s += "</div>"
-		s += "</div>"
-
-		var e = document.createElement("div")
-		e.innerHTML = s
-		messagesElement.appendChild(e)
+		return s
 	})
 
-	//console.log("messages.length = " + messages.length)
+	const newChildren = divStrings.map(divString => {
+		const e = document.createElement("div")
+		e.innerHTML = divString
+		return e
+	})
 
-	//messagesElement.innerHTML = messages.join("<br>")
-	
+	//newChildren.forEach(e => messagesElement.appendChild(e))
+	setTimeout(() => renderChildren(newChildren), 10)
+}
+
+function renderChildren(newChildren) {
+	const messagesElement = document.getElementById("messagesElement");
+	messagesElement.innerHTML = ""
+	newChildren.forEach(e => messagesElement.appendChild(e))
+	messagesElement.style.opacity = 1
+}
+
+function cleanArchive() {
+	archive.forEach(msg => {
+		msg.subject = cleanString(msg.subject)
+		if (!msg.date) { 
+			msg.date = "" 
+		}
+		msg.date = cleanString(msg.date)
+		msg.from = cleanString(msg.from)
+		msg.content = cleanString(msg.content)
+	})
 }
 
 document.addEventListener("DOMContentLoaded", function(){
+	cleanArchive()
 	main()
+	showMenuItem(menuItems()[0])
 })
 
 
