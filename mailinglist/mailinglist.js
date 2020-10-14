@@ -103,9 +103,8 @@ function showMenuItem(menuItem) {
 	unselectMenuItems()
 	menuItem.className = "menuItemSelected"
 	const messagesElement = document.getElementById("messagesElement");
-	//messagesElement.innerHTML = "...."
 	messagesElement.style.opacity = 0.1
-	setTimeout(() => showMenuItem2(menuItem), 0)
+	setTimeout(() => showMenuItem2(menuItem), 10)
 }
 
 function messageIsValid(message) {
@@ -119,12 +118,8 @@ function messageIsValid(message) {
 	return true
 }
 
-function showMenuItem2(menuItem) {
-	const messages = menuItem._messages
-	const messagesElement = document.getElementById("messagesElement");
-	//messagesElement.innerHTML = ""
-
-	const divStrings = messages.map((message) => {
+function htmlForMessage(message) {
+	if (!message.divString) {
 		let s = ""
 		s += "<div class=message>\n"
 			s += "<div class=messageHeader>"
@@ -136,17 +131,36 @@ function showMenuItem2(menuItem) {
 				s += message.content 
 			s += "</div>"
 		s += "</div>"
-		return s
-	})
+		message.divString = s
+	}
+	return message.divString
+}
 
+function showMenuItem2(menuItem) {
+	const messages = menuItem._messages
+	const messagesElement = document.getElementById("messagesElement");
+	//messagesElement.innerHTML = ""
+
+	const divStrings = messages.map(msg => htmlForMessage(msg))
+	messagesElement.style.opacity = 0.1
+
+	setTimeout(() => finishUpdate(divStrings), 10)
+
+
+	/*
 	const newChildren = divStrings.map(divString => {
 		const e = document.createElement("div")
 		e.innerHTML = divString
 		return e
 	})
 
-	//newChildren.forEach(e => messagesElement.appendChild(e))
-	setTimeout(() => renderChildren(newChildren), 10)
+	setTimeout(() => renderChildren(newChildren), 0)
+	*/
+}
+
+function finishUpdate(divStrings) {
+	messagesElement.innerHTML = divStrings.join("\n")
+	messagesElement.style.opacity = 1
 }
 
 function renderChildren(newChildren) {
@@ -165,6 +179,7 @@ function cleanArchive() {
 		msg.date = cleanString(msg.date)
 		msg.from = cleanString(msg.from)
 		msg.content = cleanString(msg.content)
+		htmlForMessage(msg)
 	})
 }
 
