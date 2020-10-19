@@ -191,6 +191,11 @@ class MboxMessage {
 			dict.subject = subjectParts[1]
 		}
 
+		subjectParts = dict.subject.split("Fwd: ")
+		if (subjectParts.length > 1) {
+			dict.subject = subjectParts[1]
+		}
+
 		var fromParts = dict.from.split(" &lt;")
 		if (fromParts.length > 1) {
 			dict.from = fromParts[0]
