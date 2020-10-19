@@ -101,7 +101,7 @@ class MboxMessage {
         const line = lineFile.currentLine()
 
         if (line.indexOf("From: ") === 0) {
-            dict.from = line.after("From: ")
+            dict.from = line.after("From: ").split('"').join("")
         }
 
         if (line.indexOf("Message-ID:") === 0) {
@@ -188,9 +188,11 @@ class Mbox {
     }
 
     write () {
+        const outPath = "archive.js"
         this._outData = "window.archive = " + JSON.stringify(this._messages.map(msg => msg.dict()), 2, 2)
         var options = { encoding:'utf-8', flag:'w' };
-        fs.writeFileSync("archive.js", this._outData, options);
+        fs.writeFileSync(outPath, this._outData, options);
+        console.log("wrote " + this._messages.length + " messages to '" + outPath + "'")
         return this
     }
 }

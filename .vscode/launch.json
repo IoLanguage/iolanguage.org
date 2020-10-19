@@ -7,7 +7,7 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch file",
+            "name": "Launch mailinglist.html",
             "url": "file:///${workspaceFolder}/mailinglist.html",
             "webRoot": "${workspaceFolder}"
         }

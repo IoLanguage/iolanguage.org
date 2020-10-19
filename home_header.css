@@ -7,8 +7,10 @@
 	margin-left: 100px;
 }
 
+/*
 .pageHeader {
 }
+*/
 
 .pageHeader a {
     color: rgb(244, 244, 236);
@@ -46,9 +48,10 @@
     margin-bottom: 22px;
 }
 
+/*
 .pageSubtitle::before {
-   /*content: 'A Programming Language';*/
 }
+*/
 
 @media only screen and (max-width: 720px) {
 	.pageTitle {

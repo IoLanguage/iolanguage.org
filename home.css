@@ -60,7 +60,7 @@ a:hover {
     line-height: 60px;
     display: block;
     -webkit-font-smoothing: antialiased;
-    -webkit-transition-delay: 0s, 0s;
+    -transition-delay: 0s, 0s;
     -webkit-transition-duration: 0.15s, 0.15s;
     -webkit-transition-property: background-color, color;
     -webkit-transition-timing-function: linear, linear;
@@ -176,7 +176,7 @@ a:hover {
 }
 
 .comment {
-    display: inline-block;
+    display: block;
     margin-top: 0px;
     padding-top: 0px;
     margin-left: 15px;

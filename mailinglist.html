@@ -25,6 +25,8 @@
 			}  
 
 			.message {
+				font-family: Helvetica, Arial;
+
 				font-size: 15px;
 				line-height: 1.2em;
 				color: #ccc;
@@ -32,7 +34,7 @@
 				margin-top: 1em;
 				padding-bottom: 0.5em;
 				border-bottom: 1px solid #999;
-				width: 100%;
+				width: max-content;
 				white-space: pre-wrap;
 			}
 
@@ -45,6 +47,7 @@
 				padding-top: 0.5em;
 				font-weight: light;
 				margin-left: 2em;
+				white-space: pre-wrap; 
 			}
 
 			.menu {
@@ -53,7 +56,7 @@
 
 			.menuItem {
 				display: inline-block;
-				padding-right: 1em;
+				/*padding-right: 0.5em;*/
 				color: #aaa;
 			}
 
@@ -64,23 +67,52 @@
 				color: white;
 			}
 
+			.pathView {
+				display: inline-block;
+			}
+
+			.PathItem {
+				display: inline-block;
+			}
+
+			.count {
+				display: inline-block;
+				color: #555;
+				width: 3em;
+				//margin-left; -3em;
+				text-align: right;
+				padding-right: 1em;
+			}
+
+			.indexName {
+				display: inline-block;
+				color: #ccc;
+			}
+
+			.messagesView {
+				transition: opacity 0.6s;
+			}
+
 		</style>
 	</head>
 	<body>
 		<div class="container leftSpace">
 			<div class="header">
-                	<div class="pageHeader">
-    			        <div class="topSpace"></div>
-    					<div class="pageTitle"><a href="index.html">Io</a></div>
-    					<div class="pageSubtitle"> / mailing list archive </div>
-    			    </div>
-    			</div>
-
-				<div id="menu"></div>
-    			<br>
-
-					<div id="messagesElement" class="messagesElement"></div>
+				<div class="pageHeader">
+					<div class="topSpace"></div>
+					<div class="pageTitle"><a href="index.html">Io</a></div>
+					<div class="pageSubtitle"> 
+						<div id="pathView" class="pathView"></div>
+					</div>
+				</div>
 			</div>
-        </div>
+
+    		<br>
+				
+			<div id="messagesView" class="text" style="border: 0px solid #f00; max-width:100%; margin-right: 10px; font-size: 0px;">
+			</div>
+
+			<br><br><br>
+		</div>
 	</body>
 </html>
