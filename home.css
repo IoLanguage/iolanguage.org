@@ -115,7 +115,7 @@ a:hover {
 /* ------------------- */
 
 @media only screen and (max-width: 885px) {
-    .link, .linkFar, .linkDocs 
+    .link, .linkFar, .linkDocs
 	{ 
 	    font-size: 60px; 
 		line-height: 60px;
@@ -123,7 +123,7 @@ a:hover {
 }
 
 @media only screen and (max-width: 720px) {
-    .link, .linkFar, .linkDocs  
+    .link, .linkFar, .linkDocs
 	{ 
 	    font-size: 50px; 
 		line-height: 50px;
@@ -132,14 +132,16 @@ a:hover {
 
 
 @media only screen and (max-width: 475px) { 
-    .link, .linkFar, .linkDocs{ 
+    .link, .linkFar, .linkDocs
+    { 
 	    font-size: 50px; 
 		line-height: 50px;
 	}
 }
 
 @media only screen and (max-width: 320px) {
-    .link, .linkFar, .linkDocs{ 
+    .link, .linkFar, .linkDocs
+    { 
 	    font-size: 32px; 
 		line-height: 32px;
 	}

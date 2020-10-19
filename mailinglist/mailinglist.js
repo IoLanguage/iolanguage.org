@@ -584,7 +584,7 @@ class App {
 			view.setTarget(app)
 			view.setAction("clickedSubindex")
 			view.element().style.display = "block"
-			view.element().style.whiteSpace = "nowrap"
+			//view.element().style.whiteSpace = "pre-wrap"
 
 			view._info = {
 				items: IteratorAsArray(subindex.values()),
