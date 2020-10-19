@@ -573,7 +573,7 @@ class App {
 			keys = keys.sort((k1, k2) => { return index.get(k1).length - index.get(k2).length } )
 			keys.reverse()
 		}
-		//console.log(indexName + ": ", keys)
+
 		keys.forEach(key => {
 			const subindex = index.get(key)
 			const itemCount = subindex.length
@@ -581,9 +581,7 @@ class App {
 			view.setClassName("entry")
 			view.element().style.width = "40em"
 			view.element().style.paddingTop = "0.3em"
-			//view.setName(key)
 			view.setTarget(app)
-			//view.element().style.marginLeft = "-4em"
 			view.setAction("clickedSubindex")
 			view.element().style.display = "block"
 			view.element().style.whiteSpace = "nowrap"
@@ -611,15 +609,16 @@ class App {
 		this._pathView.addItemNamed(indexName).setTarget(app).setAction("clickedIndex").setInfo({ indexName: indexName })
 		this._pathView.addItemNamed(subindexName).setTarget(app).setAction("clickedSubindex").setInfo({ indexName: indexName, subindexName: subindexName })
 
-		this._messagesView.element().style.opacity = 0.1
+		this._messagesView.element().style.opacity = 0.0
+		this._messagesView.element().style.transition = "all 2s"
+		this._messagesView.clear()
+		this.scrollToTop()
 
-		//setTimeout(() => {
-			this._messagesView.clear()
+		setTimeout(() => {
 			const s = view._info.items.map(item => item.divString()).join("")
 			this._messagesView.setInnerHTML(s)
 			this._messagesView.element().style.opacity = 1
-			this.scrollToTop()
-		//}, 100)
+		}, 100)
 	}
 
 	scrollToTop () {
