@@ -61,6 +61,13 @@ class LineFile {
         return this.currentLine()
     }
 
+    peakNextLine () {
+        if (this._index < this._lines.length) {
+            return this._lines[this._index ++]
+        }
+        return null
+    }
+
     previousLine () {
         if (this._index > 0) {
             this._index --
@@ -100,6 +107,10 @@ class MboxMessage {
         const dict = this._dict
         const line = lineFile.currentLine()
 
+        if (line === null) {
+            return false
+        }
+
         if (line.indexOf("From: ") === 0) {
             dict.from = line.after("From: ").split('"').join("")
         }
@@ -116,7 +127,8 @@ class MboxMessage {
             dict.date = line.after("Date: ")
         }
 
-        if (this.lineIsHeaderEnd(line)) {
+        //if (this.lineIsHeaderEnd(line)) {
+        if (this.lineFileIsHeaderEnd(lineFile)) {
             lineFile.nextLine()
             return false
         }
@@ -129,7 +141,11 @@ class MboxMessage {
     readContent (lineFile) {
         const line = lineFile.currentLine()
 
-        if (line === null || this.lineIsHeaderStart(line)) {
+        if (line === null) {
+            return false 
+        }
+        
+        if (this.lineIsHeaderStart(line)) {
             return false
         }
         
@@ -144,8 +160,23 @@ class MboxMessage {
         return isStart
     }
 
-    lineIsHeaderEnd (line) {
-        return (line.indexOf("X-Yahoo-Profile:") === 0)
+    lineFileIsHeaderEnd (lineFile) {
+        //const previousLine = lineFile.previousLine()
+        //return (line.indexOf("X-Yahoo-Profile:") === 0)
+        const currentLine = lineFile.currentLine()
+
+        const isEnd = (currentLine.length === 0)
+
+/*
+        if (isEnd) {
+            console.log("currentLine: ", currentLine)
+            console.log("isEnd: ", isEnd)
+            console.log("------------------")
+        }
+        */
+        
+        return isEnd
+        //return (nextLine === "") && (line.indexOf("X-") === 0)
     }
 
 }
