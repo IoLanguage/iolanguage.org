@@ -33,6 +33,7 @@
 				font-weight: normal;
 				font-style: normal;
 				white-space: pre-wrap;
+				color: #99c;
 			}
 
 
@@ -69,14 +70,15 @@
 				display: inline-block;
 			}
 
-			.count {
+			.PathItemTitle {
 				display: inline-block;
-				color: #555;
-				width: 3em;
-				//margin-left; -3em;
-				text-align: right;
-				padding-right: 1em;
+				transition: background-color .15s linear, color .15s linear;
 			}
+
+			.PathItemTitle:hover {
+				display: inline-block;
+				color: #aaa; 
+			}   
 
 			.indexName {
 				display: inline-block;
@@ -87,7 +89,7 @@
 				min-width: 30em;
 				max-width: 30em;
 				max-height: 1px;
-				border-bottom: 1px solid #999;
+				border-bottom: 1px solid #444;
 			}
 
 		</style>

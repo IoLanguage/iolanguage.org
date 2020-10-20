@@ -166,7 +166,7 @@ class MboxMessage {
 		}
 		return this._divString
 	}
-
+   
 	cleanDict() {
 		const dict = this._dict
 		dict.subject = cleanString(dict.subject)
@@ -215,6 +215,10 @@ class MboxMessage {
 		if (content.indexOf("redirect") !== -1) { return false }
 		if (content.indexOf("subject") !== -1) { return false }
 		return true
+	}
+
+	all () {
+		return this.date() + " " + this.from() + " " + this.subject()
 	}
 }
 
@@ -478,7 +482,7 @@ class PathView extends View {
 	}
 
 	addItemNamed (name) {
-		const view = this.newSubview().setInnerHTML(" &#47; " + name + "&nbsp;")
+		const view = this.newSubview().setInnerHTML(" &#47; <div class=PathItemTitle>" + name + "</div> &nbsp;")
 		view.element().style.width = "fit-content"
 		view.setClassName("PathItem")
 		return view
