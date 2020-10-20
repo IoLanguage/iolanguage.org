@@ -141,9 +141,13 @@ class MboxMessage {
 	}
 
 	indexibleSlotNames () {
-		return ["year", "subject", "from"]
+		return ["year", "subject", "sender"]
 	}
 
+	sender () {
+		return this.from()
+	}
+	
 	calcDivString () {
 		let s = ""
 		s += "<div class=message>\n"
@@ -177,6 +181,19 @@ class MboxMessage {
 		dict.from = cleanString(dict.from)
 		dict.content = cleanString(dict.content)
 
+
+
+		var fromParts = dict.from.split(" &lt;")
+		if (fromParts.length > 1) {
+			dict.from = fromParts[0]
+		}
+
+		var fromParts = dict.from.split("@")
+		if (fromParts.length > 1) {
+			dict.from = fromParts[0]
+		}
+
+
 		var subjectParts = dict.subject.split("[Io] ")
 		if (subjectParts.length > 1) {
 			dict.subject = subjectParts[1]
@@ -189,7 +206,7 @@ class MboxMessage {
 
 		subjectParts = dict.subject.split("Re: ")
 		if (subjectParts.length > 1) {
-			dict.subject = subjectParts[1]
+			dict.subject = subjectParts[subjectParts.length -1]
 		}
 
 		subjectParts = dict.subject.split("Fwd: ")
@@ -197,9 +214,13 @@ class MboxMessage {
 			dict.subject = subjectParts[1]
 		}
 
-		var fromParts = dict.from.split(" &lt;")
-		if (fromParts.length > 1) {
-			dict.from = fromParts[0]
+		if (dict.from.indexOf("Roberto A.") === 0) {
+			console.log("dict.subject = '" + dict.subject + "'")
+		}
+
+		if (dict.subject === "" || dict.subject.trim().length === 0) {
+			dict.subject = "[No Subject]"
+			console.log("warning: no subject on message id ", dict.id)
 		}
 
 		return this
