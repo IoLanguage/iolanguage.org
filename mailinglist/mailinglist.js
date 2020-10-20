@@ -156,6 +156,7 @@ class MboxMessage {
 				s += this.content()
 			s += "</div>"
 		s += "</div>"
+		s += "<div class=messageDivider></div>"
 		return s
 	}
 
@@ -615,7 +616,7 @@ class App {
 		this._pathView.addItemNamed(subindexName).setTarget(app).setAction("clickedSubindex").setInfo({ indexName: indexName, subindexName: subindexName })
 
 		this._messagesView.element().style.opacity = 0.0
-		this._messagesView.element().style.transition = "all 2s"
+		this._messagesView.element().style.transition = "opacity 2s"
 		this._messagesView.clear()
 		this.scrollToTop()
 
