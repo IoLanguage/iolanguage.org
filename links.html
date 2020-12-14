@@ -6,6 +6,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="stylesheet" href="home.css">
         <link rel="stylesheet" href="home_header.css">
+        <!--
+        <script src="./js/View.js" type="module"></script>
+        -->
+
+        <!--
+        <script src="file://./js/App.js" type="module"></script>
+        -->
+
         <!-- <link rel="stylesheet" href="about.css"> -->
 
         <style>
@@ -55,8 +63,14 @@
                 width: fit-content;
             }
 
-
             @media only screen and (max-width: 400px) {
+                .container {
+                    margin-left: 1em;
+                    margin-right: 1em;
+                }
+            }
+
+            @media only screen and (max-width: 500px) {
 
                 .container {
                     margin-right: 2em;
@@ -159,11 +173,10 @@
                             </a>
                             
 
-                            
-                            <a href="http://atonie.org/2008/01/io-getting-started.html" target="_blank">
+                            <a href="http://perugini.cps.udayton.edu/teaching/courses/Spring2017/cps499/Languages/notes/Io.html" target="_blank">
                                 <div class="entry">
-                                    <div class="name">Getting Started Tutorial</div>
-                                    <div class="comment">Quag</div>
+                                    <div class="name">Introduction to the Io Programming Language</div>
+                                    <div class="comment">Nicolaas Scheltens 2017</div>
                                 </div>
                             </a>
                             
@@ -211,6 +224,18 @@
                                 </div>
                             </a>  
 
+                            <!---
+                                // links are mostly bad
+
+                            <a href="http://atonie.org/2008/01/io-getting-started.html" target="_blank">
+                                <div class="entry">
+                                    <div class="name">Getting Started Tutorial</div>
+                                    <div class="comment">Quag</div>
+                                </div>
+                            </a>
+                            
+                            -->
+
                         </div>
                     </div>
                 </div>
@@ -231,18 +256,18 @@
                                     <div class="comment">Wikipedia</div>
                                 </div>
                             </a>         
-        
+
                             <a href="https://www.bushido.codes/io-lang/" target="_blank">
                                 <div class="entry">
                                     <div class="name">The Io Programming Language</div>
-                                    <div class="comment">Sean McBride</div>
+                                    <div class="comment">Sean McBride 2019</div>
                                 </div>
                             </a>
         
                             <a href="http://www.airlivin.com/the-beauty-of-io/" target="_blank">
                                 <div class="entry">
                                     <div class="name">The Beauty of Io</div>
-                                    <div class="comment">Vladimir Livin</div>
+                                    <div class="comment">Vladimir Livin 2016</div>
                                 </div>
                             </a>
         
@@ -297,6 +322,14 @@
                                 </div>
                             </a>     
 
+                            <a href="https://pragdave.me/blog/2003/02/28/io-io-its-off-to-play-i-go.html" target="_blank">
+                                <div class="entry">
+                                    <div class="name">Io, Io, it's Off to Play I Go</div>
+                                    <div class="comment">Dave Thomas 2003</div>
+                                </div>
+                            </a>
+
+
                             <a href="https://danstuken.wordpress.com/2011/06/26/7-languages-in-7-weeks-week-2-io-day-1/" target="_blank">
                                 <div class="entry">
                                     <div class="name">Io - Day 1</div>
@@ -314,7 +347,7 @@
                             <a href="https://coderwall.com/p/pdu74w/javascript-and-io-two-languages-one-oo-concept" target="_blank">
                                 <div class="entry">
                                     <div class="name">Javascript and Io</div>
-                                    <div class="comment">Eric Raio</div>
+                                    <div class="comment">Eric Raio 2016</div>
                                 </div>
                             </a> 
 
@@ -677,78 +710,190 @@
 
             <div class="group">
                 <div class="groupLeft">
-                    referenced by
+                    citations
                 </div>
                 <div class="groupRight">
                     <div class="linkSet">
         
+                        <!--
+
+                        <a href="https://www.semanticscholar.org/paper/Io%3A-a-small-programming-language-Dekorte/4667c9ffcaa843e00883e4e6c8f5f717336a90c5?sort=pub-date&citationRankingModelVersion=v0.2.0-0.001" target="_blank">
+                            <div class="entry">
+                                <div class="name">Semantic Scholar Citations</div>
+                                <div class="comment">various</div>
+                            </div>
+                        </a>   
+                    -->
+
+                        <a href="https://www.semanticscholar.org/paper/A-didactic-object-oriented%2C-prototype-based-visual-Pérez-Ortin/67ec81486b2bdc943095799f8fbbad65bec27fb5" target="_blank">
+                            <div class="entry">
+                                <div class="name">A didactic object-oriented, prototype-based visual programming environment</div>
+                                <div class="comment">Pérez... 2019</div>
+                            </div>
+                        </a>   
+
+
+                        <a href="http://www.atalon.cz/om/what-is-a-metaclass/" target="_blank">
+                            <div class="entry">
+                                <div class="name">What Is a Metaclass?</div>
+                                <div class="comment">Pavlata 2016</div>
+                            </div>
+                        </a>   
+
+                        <a href="https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=1370&context=cs_techreports" target="_blank">
+                            <div class="entry">
+                                <div class="name">Duck Futures: A Generative Approach to Transparent Futures</div>
+                                <div class="comment">Lin 2015</div>
+                            </div>
+                        </a>   
+        
+
+                        <a href="https://www.researchgate.net/publication/266149484_Pooi_un_interprete_de_un_lenguaje_orientado_a_objetos_basado_en_prototipos_para_la_educacion" target="_blank">
+                            <div class="entry">
+                                <div class="name">Pooi, un intérprete de un lenguaje orientado a objetos basado en prototipos para la educación</div>
+                                <div class="comment">Perez-Schofield 2014</div>
+                            </div>
+                        </a>   
+
+                        <a href="https://www.semanticscholar.org/paper/LC%3A-a-strongly-Timed-Prototype-Based-Programming-Nishino-Osaka/6423957d292fe7d7cb98ad55b57df53661f600a4" target="_blank">
+                            <div class="entry">
+                                <div class="name">LC: a strongly-Timed Prototype-Based Programming Language for Computer Music</div>
+                                <div class="comment">Nishino... 2013</div>
+                            </div>
+                        </a>   
+
+
+                        <a href="https://www.semanticscholar.org/paper/Mutable-objects-in-R-Wickham/e6b809ead42d289192286321d8876807b1afdd75" target="_blank">
+                            <div class="entry">
+                                <div class="name">Mutable objects in R</div>
+                                <div class="comment">Wickham 2011</div>
+                            </div>
+                        </a>   
+
+
                         <a href="https://static.csg.ci.i.u-tokyo.ac.jp/papers/11/zakirov-phd2011.pdf" target="_blank">
                             <div class="entry">
                                 <div class="name">A Study of Superinstructions and Dynamic Mixin Optimizations</div>
-                                <div class="comment">Salikh Zakirov</div>
+                                <div class="comment">Zakirov 2011</div>
                             </div>
                         </a>   
+
+                        <a href="https://docplayer.net/137462966-Towards-jit-compilation-for-io-language.html" target="_blank">
+                            <div class="entry">
+                                <div class="name">Towards JIT compilation of Io</div>
+                                <div class="comment">Zakirov... 2011</div>
+                            </div>
+                        </a>
+
+                        <a href="https://arxiv.org/pdf/1010.5694.pdf" target="_blank">
+                            <div class="entry">
+                                <div class="name">Events! (Reactivity in urbiscript)</div>
+                                <div class="comment">Baillie... 2010</div>
+                            </div>
+                        </a>   
+
+                        <a href="https://pdf.sciencedirectassets.com/272213/1-s2.0-S1567832609X00068/1-s2.0-S1567832609000022/main.pdf" target="_blank">
+                            <div class="entry">
+                                <div class="name">Behavioral interface description of an object-oriented language with futures and promises</div>
+                                <div class="comment">Ábrahám... 2009</div>
+                            </div>
+                        </a>   
+
+                        <a href="https://www.semanticscholar.org/paper/Towards-an-actor-based-concurrent-machine-model-Schippers-Cutsem/cff8ea56c88571b0ee18ba34f0ff31fb57466ba1" target="_blank">
+                            <div class="entry">
+                                <div class="name">Towards an actor-based concurrent machine model</div>
+                                <div class="comment">Schippers... 2009</div>
+                            </div>
+                        </a>   
+
+                        <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.147.7760&rep=rep1&type=pdf" target="_blank">
+                            <div class="entry">
+                                <div class="name">A Modern Objective-C Runtime</div>
+                                <div class="comment">Chisnall 2009</div>
+                            </div>
+                        </a>   
+                                                     
+                        <a href="https://tel.archives-ouvertes.fr/tel-00555937/document" target="_blank">
+                            <div class="entry">
+                                <div class="name">Sub-method Structural and Behavioral Reflection</div>
+                                <div class="comment">Denker 2008</div>
+                            </div>
+                        </a>   
+
+                        <a href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.185.2185&rep=rep1&type=pdf" target="_blank">
+                            <div class="entry">
+                                <div class="name">The Urbi Universal Platform for Robotics</div>
+                                <div class="comment">Baillie... 2008</div>
+                            </div>
+                        </a>   
+
+                        <a href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.150.2136&rep=rep1&type=pdf" target="_blank">
+                            <div class="entry">
+                                <div class="name">Updating Objective-C</div>
+                                <div class="comment">Chisnall 2008</div>
+                            </div>
+                        </a> 
+
+                        <a href="http://www.mcours.net/cours/pdf/hasclic2/hassclic117.pdf" target="_blank">
+                            <div class="entry">
+                                <div class="name">Concurrency Oriented Programming in Lua</div>
+                                <div class="comment">Chatzimparmpas 2007</div>
+                            </div>
+                        </a>   
+                
+                        <a href="https://rmod.inria.fr/archives/papers/Denk07b-TOOLS07-Submethod.pdf" target="_blank">
+                            <div class="entry">
+                                <div class="name">Sub-Method Reflection</div>
+                                <div class="comment">Denker 2007</div>
+                            </div>
+                        </a>  
+
+
+                        <a href="https://www.cs.umd.edu/~polyvios/publications/pratikakis04transparent.pdf" target="_blank">
+                            <div class="entry">
+                                <div class="name">Transparent Proxies for Java Futures</div>
+                                <div class="comment">Pratikakis... 2004</div>
+                            </div>
+                        </a>   
+    
+
+                        <!-- there's aren't published papers -->
 
                         <a href="https://projekter.aau.dk/projekter/files/61071033/1181951426.pdf" target="_blank">
                             <div class="entry">
                                 <div class="name">Merlin Language</div>
-                                <div class="comment">Fredrik Bajers</div>
+                                <div class="comment">Bajers 2007</div>
                             </div>
                         </a>   
                         
                         <a href="https://www.lysator.liu.se/upplysning/fa/The_Great_Depression.pdf" target="_blank">
                             <div class="entry">
                                 <div class="name">The Great Depression</div>
-                                <div class="comment">Thorbiörn Fritzon</div>
+                                <div class="comment">Fritzon 2006</div>
                             </div>
                         </a>   
                 
-                        <a href="https://www.cs.umd.edu/~polyvios/publications/pratikakis04transparent.pdf" target="_blank">
-                            <div class="entry">
-                                <div class="name">Transparent Proxies for Java Futures</div>
-                                <div class="comment">Pratikakis, Spacco, Hicks</div>
-                            </div>
-                        </a>   
-                
-                
-                        <a href="http://www.mcours.net/cours/pdf/hasclic2/hassclic117.pdf" target="_blank">
-                            <div class="entry">
-                                <div class="name">Concurrency Oriented Programming in Lua</div>
-                                <div class="comment">Eleftherios Chatzimparmpas</div>
-                            </div>
-                        </a>   
                 
 
-                        <a href="http://www.jot.fm/issues/issue_2009_01/article4/" target="_blank">
-                            <div class="entry">
-                                <div class="name">A Modern Objective-C Runtime</div>
-                                <div class="comment">David Chisnall</div>
-                            </div>
-                        </a>   
-                             
-                        <a href="https://tel.archives-ouvertes.fr/tel-00555937/document" target="_blank">
-                            <div class="entry">
-                                <div class="name">Sub-method Structural and Behavioral Reflection</div>
-                                <div class="comment">Marcus Denker</div>
-                            </div>
-                        </a>   
-                
+
                         <!--
+
                         <a href="" target="_blank">
                             <div class="entry">
                                 <div class="name"></div>
                                 <div class="comment"></div>
                             </div>
                         </a>   
-                        -->
-                
-                
-                        <a href=" https://dl.acm.org/doi/10.1145/1565824.1565825" target="_blank">
+
+
+                        <a href="" target="_blank">
                             <div class="entry">
-                                <div class="name">Towards an actor-based concurrent machine model</div>
-                                <div class="comment">Hans Schippers...</div>
+                                <div class="name"></div>
+                                <div class="comment"></div>
                             </div>
-                        </a>  
+                        </a>   
+
+                        -->
 
 
                         </div>
@@ -804,6 +949,8 @@
                     </div>
                 </div>
 
+
+                <!--
                   
                 <div class="group">
                     <div class="groupLeft">
@@ -844,6 +991,8 @@
                     </div>
                 </div>
 
+            -->
+
 <!--
         Mentions:
 
@@ -861,13 +1010,30 @@
                 https://ola-bini.blogspot.com/2008/02/silly-io-experiment.html
 
         "It really is ridiculously excellent."
-
         - https://ola-bini.blogspot.com/2008/02/silly-io-experiment.html
 
-
-
+        "Indeed. Io has been a stage to some of the craziest meta-programming I’ve seen anywhere.
+        - Brian Mitchell
+        https://viewsourcecode.org/why/hackety.org/2008/01/05/ioHasAVeryCleanMirror.html
 
 -->
-		</div>
+
+
+        </div>
+        <script>
+
+            /*
+            var app = null
+
+            document.addEventListener("DOMContentLoaded", function() {
+                app = new App().init()
+                app.run()
+            })
+            */
+
+
+        </script>
 	</body>
 </html>
+
+
