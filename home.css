@@ -181,6 +181,10 @@ a:hover {
     line-height: 15px;
     margin-top: 15px;
     margin-left: 15px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .comment {
