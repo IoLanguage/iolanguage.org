@@ -13,11 +13,12 @@
 }
 
 .pageHeader a {
+    font-family: "Helvetica Neue Bold", sans-serif;
     text-transform: lowercase;
     color: rgb(244, 244, 236);
     display: block;
     font-family: 'Helvetica', Sans;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 70px;
     height: 80px;
     letter-spacing: -2px;
@@ -25,9 +26,10 @@
 }
 
 .pageTitle {
+    font-family: "Helvetica Neue Bold", sans-serif;
     line-height: 80px; 
     font-size: 70px; 
-    font-weight: bold;
+    /*font-weight: bold;*/
     letter-spacing: -2px;
 }
 
