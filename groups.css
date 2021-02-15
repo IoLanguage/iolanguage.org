@@ -12,7 +12,8 @@
                 animation: fadein 2s;
                 display: block;
                 width: 8em;
-                font-weight: bold;
+                font-family: "Helvetica Neue Bold", sans-serif;
+                /*font-weight: bold;*/
                 float: left;
                 height: 100%;
                 overflow: hidden;
