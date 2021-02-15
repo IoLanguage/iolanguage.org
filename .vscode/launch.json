@@ -10,6 +10,26 @@
             "name": "Launch mailinglist.html",
             "url": "file:///${workspaceFolder}/mailinglist.html",
             "webRoot": "${workspaceFolder}"
-        }
+        },
+
+        {
+            "type": "chrome",
+            "request": "launch",
+            /*"request": "attach",*/
+            "runtimeArgs": ["--incognito"], //"--allow-insecure-localhost", "--allow-running-insecure-content"],
+            "name": "Launch index on local node server",
+            "url": "http://localhost:8000/index.html",
+            /*"preLaunchTask": "Run local node HTTPS server",*/
+        },
+
+                
+        {
+            "type": "node",
+            "protocol": "inspector",
+            "request": "launch",
+            "name": "Launch node server",
+            "cwd": "${workspaceFolder}/server",
+            "program": "${workspaceFolder}/server/server.js"
+          },
     ]
 }

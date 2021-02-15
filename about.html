@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="home.css">
 		<link rel="stylesheet" href="home_header.css">
 		<link rel="stylesheet" href="about.css">
+		<link rel="stylesheet" href="fonts/Helvetica/fonts.css">
 		<style>
 
         </style>
@@ -56,9 +57,10 @@
                         </div>
                         <div class="chunkRight">
                                 minimal syntax<br>
-                                all values are objects <br>
-                                prototype-based object model <br>
-                                everything is a message, even assignment
+                                all values are objects<br>
+                                prototype-based object model<br>
+                                everything is a message, even assignment<br>
+                                no keywords, no globals
                         </div>
                     </div>
                     
@@ -67,10 +69,11 @@
                             dynamic
                         </div>
                         <div class="chunkRight">
-                                all messages are dynamic <br>
+                                all messages are dynamic<br>
                                 code is a runtime modifiable tree of messages<br>
                                 arguments passed by expression, receiver controls eval<br>
                                 differential inheritance<br>
+                                become, transparent proxies
                         </div>
                     </div>
                     
@@ -79,9 +82,9 @@
                             concurrent
                         </div>
                         <div class="chunkRight">
-                            actors <br>
-                            futures <br>
-                            coroutines <br>
+                            coroutine based actors <br>
+                            transparent futures <br>
+                            automatic lock detection <br>
                         </div>
                     </div>
                     
@@ -93,6 +96,19 @@
                             small<br>
                             embeddable<br>
                             open source
+                        </div>
+                    </div>
+
+                    <div class="chunk">
+                        <div class="chunkLeft">
+                            implementation
+                        </div>
+                        <div class="chunkRight">
+                            embeddable <br>
+                            multi-state <br>
+                            incremental collector <br>
+                            weak links <br>
+
                         </div>
                     </div>
 
@@ -127,16 +143,35 @@
                             future
                         </div>
                         <div class="chunkRight" style="color: #999;">
-                            WASM?
+                            WASM implementation <br>
+                            mirrors, slot abstraction <br>
+                            slot hooks, notifications <br>
+                            direct sandbox communication <br>
+                            mobile and persistible stacks <br>
+                            capabilities <br>
+                            persistence <br>
                         </div>
                     </div>
 
-
+                    <br><br><br><br>
 
 
                     <!-- differential inheritance <br>
                     unified activation of slots and methods <br> -->
-                    <!-- multi-state, incremental collector, weak links -->
+                    <!--
+                    <div class="chunk">
+                        <div class="chunkLeft" style="color: #999;">
+                            implementation
+                        </div>
+                        <div class="chunkRight" style="color: #999;">
+                            multi-state <br>
+                            incremental collector <br>
+                            weak links <br>
+                            become <br>
+                            transparent proxies
+                        </div>
+                    </div>
+
                 </div>
                 <br><br>
 

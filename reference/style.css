@@ -22,7 +22,7 @@
 
 body, td {
 	background: #191919;
-    font-family: "DefaultSans", "Helvetica Neue", Sans;
+    font-family: "Helvetica Neue", Sans;
     font-size: 14px;
     line-height: 20px;
     font-style: normal;
@@ -45,7 +45,7 @@ body a {
 /* --- */
 
 pre {
-    font-family:  "DefaultSans", "Helvetica Neue", Sans;
+    font-family: "Helvetica Neue", Sans;
     font-size: 14px;
     font-weight: 400;
     color: #999;
