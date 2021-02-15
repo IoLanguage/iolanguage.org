@@ -68,8 +68,8 @@ a:hover {
     color: rgb(86, 85, 83);
     */
     color: rgb(106, 105, 103);
-    font-family: Helvetica, sans-serif;
-    font-weight: bold;
+    font-family: Helvetica Neue Bold, sans-serif;
+    /*font-weight: bold;*/
     letter-spacing: -2px;
     list-style-position: outside;
     text-decoration: none;
