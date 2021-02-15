@@ -177,7 +177,8 @@ a:hover {
 .name {
     display: block;
     color: #fff;
-    font-weight: 600;
+    font-family: "Helvetica Neue Bold", sans-serif;
+    /*font-weight: 600;*/
     line-height: 15px;
     margin-top: 15px;
     margin-left: 15px;
@@ -192,6 +193,7 @@ a:hover {
     margin-top: 0px;
     padding-top: 0px;
     margin-left: 15px;
-    font-weight: 400;
+    font-family: "Helvetica Neue", sans-serif;
+    /*font-weight: 400;*/
     color: #ccc;
 }
