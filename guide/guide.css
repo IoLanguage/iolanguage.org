@@ -28,7 +28,7 @@ body, td {
     font-size: 14px;
     line-height: 20px;
     font-style: normal;
-    font-weight: 300;
+    /*font-weight: 300;*/
     margin: 0px;
     padding: 0px;
 }
@@ -150,8 +150,9 @@ pre {
 }
 
 .infoTable td {
-	font-weight: normal;
-	padding-right: 1em;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Sans';
+    /*font-weight: normal;*/
+    padding-right: 1em;
 }
 
 .infoTable th
@@ -169,10 +170,10 @@ code {
 
 .quote {
     color: #777;
-    font-family: 'Open Sans', 'Helvetica';
+    font-family: 'Helvetica Neue', 'Helvetica', 'Sans';
+    /*font-weight: normal;*/
     font-size: 1em;
     font-style: italic;
-    font-weight: normal;
     letter-spacing: 0;
     line-height: 1.22;
     margin: 1.5em 0;
