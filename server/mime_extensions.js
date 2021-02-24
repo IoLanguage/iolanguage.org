@@ -819,5 +819,6 @@ getGlobalThis().fileExtensionToMimeTypeDict = {
 	".zmm"			: "application/vnd.handheld-entertainment+xml",
 
 	".woff2" : "font/woff2",
+	".woff" : "font/woff",
 }
 

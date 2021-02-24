@@ -67,6 +67,7 @@ a:hover {
     /*
     color: rgb(86, 85, 83);
     */
+
     color: rgb(106, 105, 103);
     font-family: "Helvetica Neue Bold", sans-serif;
     /*font-weight: bold;*/
@@ -78,12 +79,14 @@ a:hover {
     transition-timing-function: linear, linear;
 }
 
+/*
 .link a, .linkFar a, .linkDocs a {
     color: rgb(86, 85, 83);
 }
+*/
 
 
-.link a:hover {
+.link:hover {
     color: #aaaa33;    
     /*
     color: #2277ff;    
@@ -93,7 +96,7 @@ a:hover {
     */
 }
 
-.linkFar a:hover {
+.linkFar:hover {
     color: #2dc6ad;    
     /*
     color: #5e5b84;
@@ -104,7 +107,7 @@ a:hover {
     */
 }
 
-.linkDocs a:hover {
+.linkDocs:hover {
     color: #aaaa33;    
     /*
     color: #b4b044;
@@ -154,6 +157,13 @@ a:hover {
 }
 
 /* --- index --- */
+
+.entryLink:hover {
+    color: #ccc;
+    border-left: 1px solid #777;
+    margin-left: -1px;
+    background-color: #3a3a3a;
+}
 
 .entry {
 	animation: fadein 2s;

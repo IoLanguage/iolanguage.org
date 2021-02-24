@@ -12,22 +12,30 @@
 }
 */
 
+/*
+.header {
+
+}
+*/
+
 .pageHeader a {
     color: rgb(244, 244, 236);
 }
 
 .pageHeader a:hover {
-   color: #aaa;
+    color: #aaa;
 }
 
 .pageTitle {
     font-family: "Helvetica Neue Bold", sans-serif;
     text-transform: lowercase;
     display: block;
-    font-size: 70px;
-    line-height: 35px;
+    font-size: 5em;
+    line-height: 1em;
     /*font-weight: bold;*/
     letter-spacing: -2px;
+    width: fit-content;
+    padding-right: 0.1em;
 }
 
 .pageTitle a {

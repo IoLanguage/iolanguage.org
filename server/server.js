@@ -194,7 +194,8 @@ https.createServer(options, function (request, res) {
 	});
 
 	var data = fs.readFileSync(path)
-	res.write(data.toString());		
+	//res.write(data.toString());		
+	res.write(data);		
 	//console.log("  sent " + data.length + " bytes")	
 	res.end();
 }).listen(8000);
