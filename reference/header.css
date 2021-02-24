@@ -19,7 +19,7 @@
     display: block;
     font-family: 'Helvetica', Sans;
     /*font-weight: bold;*/
-    font-size: 70px;
+    font-size: 5em;
     height: 80px;
     letter-spacing: -2px;
     line-height: 80px;
@@ -27,8 +27,8 @@
 
 .pageTitle {
     font-family: "Helvetica Neue Bold", sans-serif;
-    line-height: 80px; 
-    font-size: 70px; 
+    font-size: 5em;
+    line-height: 1em;
     /*font-weight: bold;*/
     letter-spacing: -2px;
 }
