@@ -8,11 +8,12 @@ html {
 	color: #f4f4ec;
 	font-family: "Helvetica Neue", "Helvetica", sans-serif;
 	-webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+	font-size: 14px;
 }
 
 body {
 	background: #191919;
-	font-size: 15px;
 	line-height: 1.4667;
     margin: 0px;
 }
@@ -33,12 +34,12 @@ a:hover {
 /* -- content --- */
 
 .text {
-    max-width: 600px; 
-    margin-right: 20px;
+    max-width: 40em; 
+    margin-right: 1.3em;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-size: 1.06em;
     font-weight: 300;
-    line-height: 28px;
+    line-height: 1.86em;
 }
 
 .container {
@@ -56,8 +57,8 @@ a:hover {
 }
 
 .link, .linkFar, .linkDocs {
-    font-size: 60px;
-    line-height: 60px;
+    font-size: 4em;
+    line-height: 1em;
     display: block;
     -webkit-font-smoothing: antialiased;
     -transition-delay: 0s, 0s;
@@ -120,8 +121,8 @@ a:hover {
 @media only screen and (max-width: 885px) {
     .link, .linkFar, .linkDocs
 	{ 
-	    font-size: 60px; 
-		line-height: 60px;
+	    font-size: 4em; 
+		line-height: 1em;
     }
     
 }
@@ -129,8 +130,8 @@ a:hover {
 @media only screen and (max-width: 720px) {
     .link, .linkFar, .linkDocs
 	{ 
-	    font-size: 50px; 
-		line-height: 50px;
+	    font-size: 3.3em; 
+		line-height: 1em;
 	}
 }
 
@@ -138,21 +139,21 @@ a:hover {
 @media only screen and (max-width: 475px) { 
     .link, .linkFar, .linkDocs
     { 
-	    font-size: 50px; 
-		line-height: 50px;
+	    font-size: 3.3em; 
+		line-height: 1em;
 	}
 }
 
 @media only screen and (max-width: 320px) {
     .link, .linkFar, .linkDocs
     { 
-	    font-size: 32px; 
-		line-height: 32px;
+	    font-size: 2.13em; 
+		line-height: 1em;
     }
     
     .message {
-	    font-size: 13px; 
-		line-height: 13px;
+	    font-size: 0.86em; 
+		line-height: 1em;
     }
 }
 
@@ -173,7 +174,7 @@ a:hover {
     margin-top: -1px;
     width: 250px;
     margin-left: -1px;
-    font-size: 14px;
+    font-size: 1em;
     transition: .15s;
 }
 

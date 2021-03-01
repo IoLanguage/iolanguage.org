@@ -2,6 +2,7 @@
 
 /* --- header --- */
 
+/*
 .pageHeader {
 	-webkit-font-smoothing: antialiased;
     font-family: "Helvetica", Sans;
@@ -34,15 +35,16 @@
 }
 
 .pageSubtitle {
-    font-size: 15px; 
+    font-size: 1em; 
     font-weight: 600;
 }
+*/
 
 
 @media only screen and (max-width: 885px) {
     .pageHeader {
-    	padding-top: 20px;
-    	padding-left: 30px;
+    	padding-top: 1.3em;
+    	padding-left: 2em;
     }
 }
 
@@ -57,7 +59,7 @@
 @media only screen and (max-width: 475px) {
 
     .pageHeader {
-    	padding-top: 20px;
-    	padding-left: 30px;
+    	padding-top: 1.3em;
+    	padding-left: 2em;
     }
 }

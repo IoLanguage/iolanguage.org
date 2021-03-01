@@ -1,10 +1,10 @@
 
 .text {
     font-family: "Helvetica Neue", sans-serif;
-    margin-top: 60px;
-    font-size: 16px; 
+    margin-top: 4em;
+    font-size: 1em; 
     /*font-weight: 400; */
-    line-height: 20px;
+    line-height: 1.3em;
     animation: fadein 1s;
 }
 
@@ -25,10 +25,10 @@
 
 .items {
     white-space: nowrap;
-    margin-top: 60px; 
-    margin-left: 40px; 
-    margin-bottom: 25px; 
-    line-height: 21px;
+    margin-top: 4em; 
+    margin-left: 2.6em; 
+    margin-bottom: 1.6em; 
+    line-height: 1.4em;
 }
 
 /* --- chunk --- */
@@ -42,28 +42,28 @@
 .chunkLeft {
     vertical-align: top;
     display: inline-block;
-    width: 120px;
+    width: 8em;
     text-align: right;
-    padding-right: 10px;
+    padding-right: 0.66em;
     font-family: "Helvetica Neue Bold", sans-serif;
     /*font-weight: 600;*/
 }
 
 .chunkRight {
     display: inline-block;
-    padding-left: 13px;
+    padding-left: 0.86em;
     border-left: 1px solid #666;
     vertical-align: top;
 }
 
 @media only screen and (max-width: 475px) {
     .text {
-        margin-top: 30px;
+        margin-top: 2.6em;
     }
     
     .items {
-        margin-top: 10px; 
-        margin-left: 0px; 
+        margin-top: 0.66em; 
+        margin-left: 0em; 
     }
     
     .chunkLeft {
@@ -73,8 +73,8 @@
     }
     
     .chunkRight {
-        margin-top: 10px;
-        padding-left: 10px; 
+        margin-top: 0.66em;
+        padding-left: 0.66em; 
         width: auto;
         white-space: normal;
         border-left: 2px solid #555;

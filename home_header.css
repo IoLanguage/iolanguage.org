@@ -48,12 +48,14 @@
 	animation: fadein 1s;
     font-family: "Helvetica Neue Bold", sans-serif;
     color: rgb(244, 244, 236);
-    font-size: 15px;
-    line-height: 15px;
+    
+    font-size: 1em;
+    line-height: 1em;
+    
     display: block;
     /*font-weight: bold;*/
-    margin-top: 18px;
-    margin-bottom: 22px;
+    margin-top: 0.2em;
+    margin-bottom: 1.5em;
 }
 
 /*
@@ -63,74 +65,73 @@
 
 @media only screen and (max-width: 720px) {
 	.pageTitle {
-		font-size: 60px;
-		line-height: 60px;
+		font-size: 4em;
 	}
 	
 	.pageSubtitle {
-		font-size: 15px;
-	    line-height: 15px;   
-        margin-top: 10px;
+		font-size: 1em;
+	    line-height: 1em;   
+        margin-top: 0.6em;
 	}
 	
 	.topSpace { 
-	    padding-top: 50px;
+	    padding-top: 3.3em;
 	}
 
     .leftSpace {
-	    margin-left: 50px; 
+	    margin-left: 3.3em; 
     }
 
     .message {
-        font-size: 14px;
+        font-size: 1em;
     }
 }
 
 @media only screen and (max-width: 475px) {
 	.pageTitle {
-		font-size: 50px;
+		font-size: 3.3em;
 		line-height: 30px;
 	}
 	
 	.pageSubtitle {
-		font-size: 15px;
-	    line-height: 15px;
+		font-size: 1em;
+	    line-height: 1em;
 	}
 	
     .topSpace {
-        padding-top: 25px;
+        padding-top: 1.6em;
     }
     
     .leftSpace {
-        margin-left: 30px;
+        margin-left: 2em;
     }
 
     .message {
-        font-size: 10px;
+        font-size: 0.7em;
     }
 }
 
 @media only screen and (max-width: 320px) {
 	.pageTitle {
-	    font-size: 32px; 
-		line-height: 15px;
+	    font-size: 2.1em; 
+		line-height: 1em;
 	}
 	
 	.pageSubtitle {
-	    font-size: 14px; 
-	    line-height: 14px;
+	    font-size: 1em; 
+	    line-height: 1em;
 	}
 	
     .topSpace {
-        padding-top: 30px;
+        padding-top: 2em;
     }
     
     .leftSpace {
-        margin-left: 20px;
+        margin-left: 1.3em;
     }
 
     .message {
-        font-size: 8px;
+        font-size: 0.5em;
     }
 }
 

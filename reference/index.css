@@ -3,7 +3,6 @@
 	animation: fadein 2s;
     display: block; 
 
-    	
     width: 100%;
 	background-color: #191919;
 	
@@ -35,9 +34,9 @@
     color: #fff;
     font-weight: 600;
     margin-top: 0px;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    font-size: 19px;
+    margin-bottom: 0.66em;
+    padding-bottom: 0.3em;
+    font-size: 1.2em;
 }
 
 .categoryIndexName a {
