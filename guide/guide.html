@@ -874,6 +874,7 @@ b := block(a, a + b)
                                 </td>
                             </tr>
                         </table>
+                        <br>
 
                         <h4>Variable Arguments</h4> The "call message" slot in locals can be used to access the unevaluated argument messages. Example of implementing if() within Io:
 
@@ -1975,8 +1976,7 @@ void Dictionary_key_value_(Dictionary *self,
                     <pre>
 #include "IoState.h"
 
-int main(int argc, const char *argv[])
-{
+int main(int argc, const char *argv[]) {
     IoState *self = IoState_new();
     IoState_init(self);
     IoState_doCString_(self, "writeln(\"hello world!\"");
@@ -2005,16 +2005,11 @@ IoObject_print(v);
                     <h4>Checking value types</h4> There are some macro short cuts to help with quick type checks:
 
                     <pre>
-if (ISNUMBER(v))
-{
+if (ISNUMBER(v)) {
     printf("result is the number %f", IoNumber_asFloat(v));
-} 
-else if(ISSEQ(v))
-{
+} else if(ISSEQ(v)) {
     printf("result is the string %s", IoSeq_asCString(v));
-}
-else if(ISLIST(v))
-{
+} else if(ISLIST(v)) {
     printf("result is a list with %i elements", 
 		IoList_rawSize(v));
 }
@@ -2120,10 +2115,11 @@ digits ::= { digit }
                                 1
                             </td>
                             <td>
+                                <div class="reference">
                                 Goldberg, A et al.
                                 <br> Smalltalk-80: The Language and Its Implementation
                                 <br> Addison-Wesley, 1983
-                                <br>
+                                </div>
                             </td>
                         </tr>
 
@@ -2136,11 +2132,12 @@ digits ::= { digit }
                                 2
                             </td>
                             <td>
+                                <div class="reference">
                                 Ungar, D and Smith,
                                 <br> RB. Self: The Power of Simplicity
                                 <br> OOPSLA, 1987
-                                <br>
-                            </td>
+                                </div>
+                        </td>
                         </tr>
 
                         <tr>
@@ -2152,11 +2149,12 @@ digits ::= { digit }
                                 3
                             </td>
                             <td>
+                                <div class="reference">
                                 Smith, W.
                                 <br> Class-based NewtonScript Programming
                                 <br> PIE Developers magazine, Jan 1994
-                                <br>
-                            </td>
+                                </div>
+                        </td>
                         </tr>
 
                         <tr>
@@ -2168,11 +2166,12 @@ digits ::= { digit }
                                 4
                             </td>
                             <td>
+                                <div class="reference">
                                 Lieberman
                                 <br> H. Concurrent Object-Oriented Programming in Act 1
                                 <br> MIT AI Lab, 1987
-                                <br>
-                            </td>
+                            </div>
+                        </td>
                         </tr>
 
                         <tr>
@@ -2184,11 +2183,12 @@ digits ::= { digit }
                                 5
                             </td>
                             <td>
-                                McCarthy, J et al.
+                                <div class="reference">
+                                    McCarthy, J et al.
                                 <br> LISP I programmer's manual
                                 <br> MIT Press, 1960
-                                <br>
-                            </td>
+                            </div>
+                        </td>
                         </tr>
 
                         <tr>
@@ -2200,11 +2200,12 @@ digits ::= { digit }
                                 6
                             </td>
                             <td>
+                                <div class="reference">
                                 Ierusalimschy, R, et al.
                                 <br> Lua: an extensible extension language
                                 <br> John Wiley & Sons, 1996
-                                <br>
-                            </td>
+                            </div>
+                        </td>
                         </tr>
                     </table>
 

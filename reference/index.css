@@ -72,15 +72,18 @@
 
 .classIndex {
     display: inline-block;
-    margin-top: -1px;
+    /*margin-top: -1px;*/
     width: 200px;
     font-size: 14px;
     transition: .15s;
+    border-radius:3px;
+    padding-left: 0.2em;
+    margin-left:-0.2em;
 }
 
 .classIndex:hover {
     color: #ccc;
-    background-color: #3a3a3a;
+    background-color: rgba(58, 58, 58, 0.75);
 }
         
 .classIndexName {
