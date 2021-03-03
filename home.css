@@ -72,7 +72,7 @@ a:hover {
     color: rgb(106, 105, 103);
     font-family: "Helvetica Neue Bold", sans-serif;
     /*font-weight: bold;*/
-    letter-spacing: -2px;
+    letter-spacing: -0.04em;
     list-style-position: outside;
     text-decoration: none;
     transition-duration: 0.15s, 0.15s;

@@ -58,8 +58,8 @@
 
 .packageIndexName {
     color: #fff;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 1em;
+    line-height: 1em;
     font-weight: 600;
     margin-bottom: 0px;
     padding-bottom: 4px;
@@ -74,11 +74,12 @@
     display: inline-block;
     /*margin-top: -1px;*/
     width: 200px;
-    font-size: 14px;
+    font-size: 1em;
     transition: .15s;
-    border-radius:3px;
-    padding-left: 0.2em;
-    margin-left:-0.2em;
+    border-radius: 0.2em;
+    padding-left: 0.5em;
+    margin-left:-0.5em;
+
 }
 
 .classIndex:hover {
@@ -90,10 +91,10 @@
     display: block;
     color: #aaa;
     font-weight: 300;
-    font-size: 14px;
-    line-height: 15px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    font-size: 1em;
+    line-height: 1em;
+    padding-top: 0.3em;
+    padding-bottom: 0.1em;
     padding-left: 0px;
     margin-left: 0px;
 }
@@ -102,7 +103,7 @@
     display: inline-block;
     margin-top: 0px;
     padding-top: 0px;
-    margin-left: 15px;
+    margin-left: 1em;
     font-weight: 400;
     color: #ccc;
 }
@@ -110,8 +111,8 @@
 
 @media only screen and (max-width: 885px) {
     .categoryIndex {
-        margin-top: 50px;
-        padding-top: 50px;
+        margin-top: 3em;
+        padding-top: 3em;
     }
 
 /*
@@ -121,8 +122,8 @@
     */
     
     .index {
-    	padding-top: 20px;
-    	padding-bottom: 100px;
+    	padding-top: 1.5em;
+    	padding-bottom: 5em;
     }
 
     .indexColumns {
@@ -149,6 +150,10 @@
 
 @media only screen and (max-width: 475px) {
     
+    html, body, td {
+        font-size: 13px;
+    }
+
     .index {
     	padding-top: 0px;
     	padding-bottom: 0px;
@@ -169,7 +174,7 @@
     
     .packageIndex {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 1em;
     }
     
     .classIndex {
@@ -177,27 +182,26 @@
     }
 
     .categoryIndexName {
-        font-size: 32px;
-        line-height: 32px;
+        font-size: 1.5em;
+        line-height: 1em;
     }    
     
     .packageIndexName {
-        font-size: 20px;
-        line-height: 30px;
+        font-size: 1em;
+        line-height: 1em;
     }
         
     .classIndexName {
-        font-size: 20px;
-        line-height: 20px;
-        margin-bottom: 5px;
+        font-size: 1em;
+        line-height: 1em;
     }
 
     .class {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 
     .className {
-        margin-top: 30px;
+        margin-top: 2em;
     }
 }

@@ -17,7 +17,7 @@
         div.style.top = 0;
         div.style.left = 0;
         div.style.opacity = 0;
-        div.innerHTML = "test";
+        div.innerHTML = "";
         div.style.animation = "fadein " + blackoutPeriod + "s";
         div.style.animationTimingFunction = "ease-in-out";
         document.body.appendChild(div);	
