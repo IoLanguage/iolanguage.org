@@ -93,8 +93,8 @@
                 <div class="packageIndex">
                     <a href="#Unicode"><span class="packageIndexName">Unicode</span></a>
                     <a href="#Unicode-Sequences"><span class="classIndex"><span class="classIndexName">Sequences</span></span></a>
-                    <a href="#Unicode-Source-Code"><span class="classIndex"><span class="classIndexName">Source</span></span></a>
                     <a href="#Unicode-Conversion"><span class="classIndex"><span class="classIndexName">Conversion</span></span></a>
+                    <a href="#Unicode-Source-Code"><span class="classIndex"><span class="classIndexName">Source</span></span></a>
                 </div>
 
                 <div class="packageIndex">
@@ -1868,9 +1868,25 @@ number, ascii, ucs2, ucs4, utf8
                     <p>
                         UTF encodings are assumed to be big endian.
                         <p>
-                            Except for input and output, all strings should be kept in a fixed character width encoding. This design allows for a simpler implementation, code sharing between vector and string ops, fast index-based access, and SIMD acceleration of Sequence operations. All Sequence methods will do automatic type conversions as needed.
+                           <!--
+                            Except for input and output, all strings should be kept in a fixed character width encoding. 
+                            This design allows for a simpler implementation, code sharing between vector and string ops, fast index-based access, and SIMD acceleration of Sequence operations. All Sequence methods will do automatic type conversions as needed.
+                           -->
 
 
+                           <a name="Unicode-Conversion"></a>
+                           <h3>Conversion</h3>
+       
+       
+       
+       
+                           The Sequence object has a number of conversion methods:
+       
+<pre>
+asUTF8
+asUCS2
+asUCS4
+</pre>
 
                     <a name="Unicode-Source-Code"></a>
                     <h3>Source&nbsp;Code</h3>
@@ -1898,19 +1914,6 @@ Io> "π" itemSize
 ==> 2
 </pre>
 
-                    <a name="Unicode-Conversion"></a>
-                    <h3>Conversion</h3>
-
-
-
-
-                    The Sequence object has a number of conversion methods:
-
-                    <pre>
-asUTF8
-asUCS2
-asUCS4
-</pre>
 
 
  
