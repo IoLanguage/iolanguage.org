@@ -1189,13 +1189,16 @@ Io> test
 
 
 
-                    Io uses coroutines (user level cooperative threads), instead of preemptive OS level threads to implement concurrency. This avoids the substantial costs (memory, system calls, locking, caching issues, etc) associated with native threads and allows Io to support a very high level of concurrency with thousands of active threads.
+                    Io uses coroutines (user level cooperative threads), instead of preemptive OS level threads to implement concurrency. 
+                    This avoids the substantial costs (memory, system calls, locking, caching issues, etc) associated with native threads and allows Io to support a high level of concurrency.
+                    Io's coroutines stacks are much smaller than native thread stacks but can automatically increase in size (by chaining coroutines) as needed. 
 
+                    <p></p>
+                    Io's <a href="#Primitives-Networking">networking libraries</a> leverage coroutines by automatically pausing the calling coroutine (and scheduling another) when waiting 
+                    on read/write operations, and resuming them when the result (which may be an error or timeout exception) of the read/write is available.
 
                     <a name="Concurrency-Scheduler"></a>
                     <h3>Scheduler</h3>
-
-
 
 
                     The Scheduler object is responsible for resuming coroutines that are yielding. The current scheduling system uses a simple first-in-first-out policy with no priorities.
@@ -1237,9 +1240,11 @@ HttpServer handleRequest := method(aSocket,
 
 
 
-                    Io's futures are transparent. That is, when the result is ready, they become the result. If a message is sent to a future (besides the two methods it implements), it waits until it turns into the result before processing the message. Transparent futures are powerful because they allow programs to minimize blocking while also freeing the programmer from managing the fine details of synchronization.
+                    A future is a special kind of reference which is immediately returned from an futureSend() message which acts as a placeholder for the eventual result of the message. Io's futures are transparent. That is, when the result is ready, the future becomes the result. 
+                    
+                    If a message is sent to a future (besides the two methods it implements), it waits until it turns into the result before processing the message. Actors with transparent futures can dramatically simplify synchronization.
 
-                    <h4>Auto Deadlock Detection</h4> An advantage of using futures is that when a future requires a wait, it will check to see if pausing to wait for the result would cause a deadlock and if so, avoid the deadlock and raise an exception. It performs this check by traversing the list of connected futures.
+                    <h4>Auto Deadlock Detection</h4> An advantage of using futures is that when a future requires a wait, it will check to see if pausing to wait for the result would cause a deadlock and if so, avoid the deadlock and raise an exception. Since each future knows which actor it is waiting on, and each actor knows which (if any) future it is waiting on, Io can check for a deadlock by traversing this list.
 
                     <h4>Futures and the Command Line Interface</h4> The command line will attempt to print the result of expressions evaluated in it, so if the result is a Future, it will attempt to print it and this will wait on the result of Future. Example:
 
@@ -1703,7 +1708,7 @@ Date cpuSecondsToRun(100000 repeat(1+1))
                     <h3>Networking</h3>
 
 
-                    All of Io's networking is done with asynchronous sockets underneath, but operations like reading and writing to a socket appear to be synchronous since the calling coroutine is unscheduled until the socket has completed the operation, or a timeout occurs. Note that you'll need to first reference the associated addon in order to cause it to load before using its objects. In these examples, you'll have to reference "Socket" to get the Socket addon to load first.
+                    All of Io's networking is done with asynchronous sockets underneath, but operations like reading and writing to a socket appear to be synchronous since the calling coroutine is unscheduled until the socket has completed the operation, or an error or timeout occurs. Note that you'll need to first reference the associated addon in order to cause it to load before using its objects. In these examples, you'll have to reference "Socket" to get the Socket addon to load first.
                     <p>
                         Creating a URL object:
 
