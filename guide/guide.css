@@ -22,6 +22,20 @@
     background-color: #555;
 }
 
+html {
+    overflow-x: hidden;
+    width: auto;
+    /*background-color: red;
+    border: 3px solid blue;
+    */
+}
+
+body {
+    overflow-x: hidden;
+    width: auto;
+    /*border: 3px dashed yellow;*/
+
+}
 
 body, td {
     font-family: 'Helvetica Neue', 'Helvetica', 'Sans';
