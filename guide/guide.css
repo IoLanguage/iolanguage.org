@@ -168,6 +168,8 @@ pre {
     font-family: 'Helvetica Neue', 'Helvetica', 'Sans';
     /*font-weight: normal;*/
     padding-right: 1em;
+    line-height: 1.5em;
+
 }
 
 .infoTable th
