@@ -1,81 +1,15 @@
-<html>                                                                  
+<html lang="en">
 <head>
 	<meta charset="utf-8">
     <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>io reference</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>io reference</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="../home.css">
+	<link rel="stylesheet" href="../home.css">
     <link rel="stylesheet" href="../home_header.css">
 	<link rel="stylesheet" href="../fonts/Helvetica/fonts.css">
-
-	<script>
-	var blackout = null;
-	var blackoutPeriod = .2;
-	
-	function addBlackout() {
-	    if (blackout) { 
-	        return; 
-	    }
-	    
-	    var div = document.createElement("div");
-        div.className = "blackout"
-        div.style.zIndex = "10";
-        div.style.height = "100vh";
-        div.style.width = "100%";
-        div.style.background = "black";
-        div.style.position = "fixed";
-        div.style.top = 0;
-        div.style.left = 0;
-        div.style.opacity = 0;
-        div.innerHTML = "";
-        div.style.animation = "fadein " + blackoutPeriod + "s";
-        div.style.animationTimingFunction = "ease-in-out";
-        document.body.appendChild(div);	
-        blackout = div;    
-	}
-	
-	function removeBlackout() {
-	    var rate = 3
-        blackout.style.animation = "fadeout " + blackoutPeriod*rate + "s";
-            setTimeout(function () {
-                document.body.removeChild(blackout);
-                blackout = null	    
-	        }, blackoutPeriod*1000*rate);
-	}
-	
-	function jumpto(hash) {
-
-            addBlackout()
-            
-            setTimeout(function () {
-	            window.location = hash;
-	            removeBlackout()
-	        }, blackoutPeriod*1000);
-	        
-	    //console.log("jumpto: " + hash)
-	}
-	
-	window.onload = function() {
-        var anchors = document.getElementsByTagName('a');
-        for(var i = 0; i < anchors.length; i++) {
-            var anchor = anchors[i];
-            var url = anchor.getAttribute('href', 2)
-            if (url && url[0] == "#") {
-                anchor.onclick = null;
-                anchor.onclick = function() {
-                    jumpto(this.getAttribute('href', 2));
-                    return false
-                }
-            }
-        }
-    }
-	
-	</script>
-	
-	
+    <script type="module" src="../js/JumpToHash.js"></script>
 </head>                                                                 
 <body>
 	<div class="pageHeader leftSpace">
@@ -1324,7 +1258,7 @@
 </ul>
 Example use;
 <pre>	
-sensors := AppleSensors clone
+sensors = AppleSensors clone
 value := sensors getRightLightSensor
 </pre>
 </div>
@@ -3525,10 +3459,10 @@ MyErrorType := Error clone
 <div class='classDescription'>Encapsulates file i/o. Here's an example of opening a file, 
 and reversing its lines:
 <pre>	
-file := File clone openForUpdating("/tmp/test")
-lines := file readLines reverse
+file = File clone openForUpdating("/tmp/test")
+lines = file readLines reverse
 file rewind
-lines foreach(line, file write(line, "\n"))
+lines foreach(i, line, file write(line, "\n"))
 file close
 </pre>
 </div>
@@ -4869,7 +4803,8 @@ Io> message(a) argCount
 </div>
 <div class='slot'>
 <div class='slotName'>asBinary</div>
-<div class='slotValue'>Returns the number as binary digits inside a string. 42 asBinary -> "101010"
+<div class='slotValue'>Returns the number as binary digits inside a string. 42 asBinary -> "101010".
+ <br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
@@ -5294,11 +5229,13 @@ would return:
 <div class='slot'>
 <div class='slotName'>toBase(base)</div>
 <div class='slotValue'> Returns the number in another base. 42 toBase(2) -> "101010"
+. <br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
 <div class='slotName'>toBaseWholeBytes(base)</div>
 <div class='slotValue'> Returns the number in another base printing out entire bytes. 42 toBaseWholeBytes(2) -> "00101010"
+ <br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
@@ -6562,22 +6499,24 @@ Returns self.
 <div class='slotName'>asBase64(optionalCharactersPerLine)</div>
 <div class='slotValue'>	Returns an immutable, base64 encoded (according to RFC 1421) version of self. 
 	optionalCharactersPerLine describes the number of characters between line breaks and defaults to 0.
+<br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
 <div class='slotName'>asBinaryNumber</div>
 <div class='slotValue'>	Returns a Number containing the first 8 bytes of the
-	receiver without casting them to a double. Endian is same as machine.
+	receiver without casting them to a double. Endian is same as machine. Also see: Sequence asBinaryUnsignedInteger.
 </div>
 </div>
 <div class='slot'>
 <div class='slotName'>asBinarySignedInteger</div>
-<div class='slotValue'>	Returns a Number with the bytes of the receiver interpreted as a binary signed integer. Endian is same as machine.
+<div class='slotValue'>	Returns a Number with the bytes of the receiver interpreted as a binary signed integer. Endian is same as machine. Also see: Sequence asBinaryUnsignedInteger.
 </div>
 </div>
 <div class='slot'>
 <div class='slotName'>asBinaryUnsignedInteger</div>
 <div class='slotValue'>	Returns a Number with the bytes of the receiver interpreted as a binary unsigned integer. Endian is same as machine.
+ <br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
@@ -7008,12 +6947,14 @@ aSequence foreach(v, writeln("value ", v))
 <div class='slot'>
 <div class='slotName'>fromBase(aNumber)</div>
 <div class='slotValue'>	Returns a number with a base 10 representation of the receiver
-	converted from the specified base. Only base 2 through 32 are currently supported.
+	converted from the specified base. Only base 2 through 32 are currently supported. Also see: Number fromString().
+<br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
 <div class='slotName'>fromBase64</div>
 <div class='slotValue'>	Returns an immutable, base64 decoded (according to RFC 1421) version of self.
+<br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
@@ -7142,6 +7083,7 @@ Returns self.
 <div class='slotName'>log10</div>
 <div class='slotValue'>Sets each value of the Sequence to the base 10 log of its value.
 Returns self.
+<br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
@@ -7291,6 +7233,7 @@ For example, list(1,2,3) removeEvenIndexes == list(1, 3). Returns self.
 <div class='slot'>
 <div class='slotName'>removeLast</div>
 <div class='slotValue'>	Removes the last element from the receiver. Returns self.
+ <br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
@@ -7541,7 +7484,8 @@ Returns self.
 <div class='slotName'>toBase(aNumber)</div>
 <div class='slotValue'>	Returns a Sequence containing the receiver (which is
 	assumed to be a base 10 number) converted to the specified base.
-	Only base 8 and 16 are currently supported.
+	Only base 8 and 16 are currently supported. Also see: Sequence fromBase().
+<br><br>Related methods: Sequence asBinarySignedInteger, Sequence asBinaryUnsignedInteger, Sequence asBinaryNumber, Sequence asBase64, Sequence fromBase(base), Sequence fromBase64, Sequence toBase(base), Number toBase(base), toBaseWholeBytes(base).
 </div>
 </div>
 <div class='slot'>
