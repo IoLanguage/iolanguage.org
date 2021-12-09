@@ -89,6 +89,9 @@
 1+1
 <div class="result">2</div>
 
+1+1 == 2
+<div class="result">true</div>
+
 2 sqrt
 <div class="result">1.414214</div>
 </div>
@@ -221,8 +224,11 @@ c at(0) asCharacter
 s := "this is a test"
 <div class="result">"this is a test"</div>
 
-words := s split(" ", "\t") print
-<div class="result">"this", "is", "a", "test"</div>
+words := s split(" ", "\t") 
+<div class="result">list(this, is, a, test)</div>
+
+words join(" ")
+<div class="result">this is a test</div>
 
 s findSeq("is")
 <div class="result">2</div>
