@@ -496,7 +496,7 @@ Operators can also be added or removed, or have their precedence changed by usin
 
 <pre>OperatorTable addOperator("!!", 3)</pre>
 
-adds the !! operator with a precedence of 3. Note that this change will not effect the source file in which the OperatorTable is modified as the full file is parsed before it is evaluated.
+adds the !! operator with a precedence of 3. Note that this change will not affect the source file in which the OperatorTable is modified as the full file is parsed before it is evaluated.
 
 
 
@@ -735,9 +735,9 @@ In all other languages we've considered [Fortran, Algol60, Lisp, APL, Cobol, Pas
 
 
 
-                    In Io, everything is an object (including the locals storage of a block and the namespace itself) and all actions are messages (including assignment). Objects are composed of a list of key/value pairs called slots, and an internal list of objects from which it inherits called protos. A slot's key is a symbol (a unique immutable sequence) and its value can be any type of object.
+                    In Io, everything is an object (including the locals storage of a block and the namespace itself) and all actions are messages (including assignment). Objects are composed of a list of key/value pairs called slots, and an internal list of objects from which they inherit called protos. A slot's key is a symbol (a unique immutable sequence) and its value can be any type of object.
 
-                    <h4>clone and init</h4> New objects are made by cloning existing ones. A clone is an empty object that has the parent in its list of protos. A new instance's init slot will be activated which gives the object a chance to initialize itself. Like NewtonScript[3], slots in Io are create-on-write.
+                    <h4>clone and init</h4> New objects are made by cloning existing ones. A clone is an empty object that has the parent in its list of protos. When an object is cloned, the new instance's init slot will be activated which gives the object a chance to initialize itself. Like NewtonScript[3], slots in Io are create-on-write.
 
                     <pre>
 me := Person clone
@@ -746,14 +746,14 @@ me := Person clone
                     <pre>
 myDog name := "rover"
 myDog sit := method("I'm sitting\n" print)
-</pre> When an object is cloned, its "init" slot will be called if it has one.
+</pre>
 
 
                     <a name="Objects-Inheritance"></a>
                     <h3>Inheritance</h3>
 
 
-                    When an object receives a message it looks for a matching slot, if not found, the lookup continues depth first recursively in its protos. Lookup loops are detected (at runtime) and avoided. If the matching slot contains an activatable object, such as a Block or CFunction, it is activated, if it contains any other type of value it returns the value. Io has no globals and the root object in the Io namespace is called the Lobby.
+                    When an object receives a message it looks for a matching slot, if not found, the lookup continues depth first recursively in its protos. Lookup loops are detected (at runtime) and avoided. If the matching slot contains an activatable object, such as a Block or CFunction, it is activated; if it contains any other type of value it returns the value. Io has no globals and the root object in the Io namespace is called the Lobby.
                     <p>
                         Since there are no classes, there's no difference between a subclass and an instance. Here's an example of creating the equivalent of a subclass:
 
@@ -780,7 +780,7 @@ Io> Dog := Object clone
 
 
 
-                    A method is an anonymous function which, when called, creates an object to store its locals and sets the local's proto pointer and its self slot to the target of the message. The Object method method() can be used to create methods. Example:
+                    A method is an anonymous function which, when called, creates an object to store its locals and sets the locals object's proto pointer and its self slot to the target of the message. The Object method method() can be used to create methods. Example:
 
                     <pre>
 method((2 + 2) print)
@@ -789,11 +789,11 @@ method((2 + 2) print)
                     <pre>
 Dog := Object clone
 Dog bark := method("woof!" print)
-</pre> The above code creates a new "subclass" of object named Dog and adds a bark slot containing a block that prints "woof!". Example of calling this method:
+</pre> The above code creates a new "subclass" of object named Dog and adds a bark slot containing a method that prints "woof!". Example of calling this method:
 
                     <pre>
 Dog bark
-</pre> The default return value of a block is the result of the last expression.
+</pre> The default return value of a method is the result of the last expression.
 
                     <h4>Arguments</h4> Methods can also be defined to take arguments. Example:
 
