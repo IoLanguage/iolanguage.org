@@ -233,9 +233,7 @@ class KeyNav {
 
 
 window.addEventListener('load', (event) => {
-    window.keyNav = new KeyNav().init().setup()
-
-
+    //window.keyNav = new KeyNav().init().setup()
 });
 
 //export default class KeyNav { }
