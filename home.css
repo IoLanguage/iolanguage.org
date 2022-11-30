@@ -71,7 +71,7 @@ a:hover {
 
     color: rgb(106, 105, 103);
     font-family: "Helvetica Neue Bold", sans-serif;
-    /*font-weight: bold;*/
+    font-weight: bold;
     letter-spacing: -0.04em;
     list-style-position: outside;
     text-decoration: none;
@@ -189,7 +189,7 @@ a:hover {
     display: block;
     color: #fff;
     font-family: "Helvetica Neue Bold", sans-serif;
-    /*font-weight: 600;*/
+    font-weight: 600;
     line-height: 15px;
     margin-top: 15px;
     margin-left: 15px;
