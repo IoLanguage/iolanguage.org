@@ -28,11 +28,11 @@
 
 .pageTitle {
     font-family: "Helvetica Neue Bold", sans-serif;
+    font-weight: bold;
     text-transform: lowercase;
     display: block;
     font-size: 5em;
     line-height: 1em;
-    /*font-weight: bold;*/
     letter-spacing: -2px;
     width: fit-content;
     padding-right: 0.1em;
@@ -47,13 +47,13 @@
 .pageSubtitle {
 	animation: fadein 1s;
     font-family: "Helvetica Neue Bold", sans-serif;
+    font-weight: bold;
     color: rgb(244, 244, 236);
     
     font-size: 1em;
     line-height: 1em;
     
     display: block;
-    /*font-weight: bold;*/
     margin-top: 0.2em;
     margin-bottom: 1.5em;
 }
