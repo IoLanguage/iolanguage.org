@@ -16,7 +16,7 @@
 .moreLink a {
     color: white;
     font-family: "Helvetica Neue Bold", sans-serif;
-    /*font-weight: bold;*/
+    /*font-weight: 200;*/
 }
 
 .moreLink a:hover {

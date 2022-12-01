@@ -28,7 +28,7 @@
 
 .pageTitle {
     font-family: "Helvetica Neue Bold", sans-serif;
-    font-weight: bold;
+    font-weight: 200;
     text-transform: lowercase;
     display: block;
     font-size: 5em;
@@ -47,7 +47,7 @@
 .pageSubtitle {
 	animation: fadein 1s;
     font-family: "Helvetica Neue Bold", sans-serif;
-    font-weight: bold;
+    font-weight: 200;
     color: rgb(244, 244, 236);
     
     font-size: 1em;
