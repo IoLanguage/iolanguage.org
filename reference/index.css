@@ -26,7 +26,7 @@
 
 .categoryIndexName {
     color: #fff;
-    font-weight: 600;
+    font-weight: 200;
     margin-top: 0px;
     margin-bottom: 0.66em;
     padding-bottom: 0.3em;
@@ -54,7 +54,7 @@
 .packageIndexName {
     color: #fff;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 200;
     margin-bottom: 0em;
     padding-bottom: 0em;
 }

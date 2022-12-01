@@ -19,7 +19,6 @@
     color: rgb(244, 244, 236);
     display: block;
     font-family: 'Helvetica', Sans;
-    /*font-weight: bold;*/
     font-size: 5em;
     height: 80px;
     letter-spacing: -2px;
@@ -30,13 +29,12 @@
     font-family: "Helvetica Neue Bold", sans-serif;
     font-size: 5em;
     line-height: 1em;
-    /*font-weight: bold;*/
     letter-spacing: -2px;
 }
 
 .pageSubtitle {
     font-size: 1em; 
-    font-weight: 600;
+    font-weight: 200;
 }
 */
 
