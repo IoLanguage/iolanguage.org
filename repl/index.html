@@ -96,6 +96,38 @@
         width: fit-content;
       }
 
+      table td {
+        padding: 3px;
+        padding-left: 0.5em;
+        padding-right: 1.5em;
+        border-top: thin solid; 
+        border-bottom: thin solid;
+        border-right: thin solid;
+      }
+
+      table td:first-child {
+        border-left: thin solid;
+      }
+
+      table td:last-child {
+        border-right: thin solid;
+      }
+
+      td {
+        font-size: 0.9em;
+        line-height: 1em;
+        font-weight: normal;
+        border: #444 0px solid; 
+        background-color: transparent; 
+        color: #444;
+        padding-top: 0em;
+        padding-bottom: 0em;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+        margin-top: 0.2em;
+        width: fit-content;
+      }
+
       .button {
         font-weight: normal;
         border: #444 1px solid; 
@@ -172,6 +204,7 @@
     <script src="Boot.js" type="module"></script>
 
 	</head>
+  <body>
   <div class="container leftSpace">
     <div class="header">
           <div class="pageHeader">
@@ -223,11 +256,29 @@
     </select>
   </form>
   <br>
+  <!--
   <div class=""help_section" style="border: 1px solid #222; width: fit-content;">
     <div class="help">CMD+RETURN →  EVAL</div>
     <div class="help">CMD+SHIFT+K →  CLEAR OUTPUT</div>
     <div class="help">CMD+K →  CLEAR INPUT</div>
   </div>
+  -->
+  <table cellpadding="3" cellspacing="0" width="fit-content" style="border: 1px solid #444;" rules="none">
+  <tbody> 
+    <tr> 
+      <td>EVAL</td>
+      <td>COMMAND RETURN</td>
+    </tr>
+    <tr> 
+      <td>CLEAR OUTPUT</td>
+      <td>COMMAND SHIFT K</td>
+    </tr>
+    <tr> 
+      <td>CLEAR INPUT</td>
+      <td>COMMAND K</td>
+    </tr>
+  </tbody>
+  </table>
   <br><br><br>
   </div>
 </div>

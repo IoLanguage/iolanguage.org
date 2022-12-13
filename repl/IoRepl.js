@@ -96,26 +96,15 @@ if (!window.chrome) {
       this.onCommandDownArrowKey(event)
     }
 
-    if (event.keyCode == kKeyCode && event.metaKey) {
+    if (event.keyCode == kKeyCode && !event.shiftKey && event.metaKey) {
       this.clearInput()
     }
 
-    if (event.keyCode == kKeyCode && event.metaKey && event.metaKey) {
+    if (event.keyCode == kKeyCode && event.shiftKey && event.metaKey) {
       this.clearOutput()
     }
 
     this.textAreaAdjust()
-  }
-
-  //onKeyUp (event) {
-  //}
-
-  onCommandUpKey (event) {
-    event.preventDefault()
-  }
-
-  onCommandDownKey (event) {
-    event.preventDefault()
   }
 
   outputElement () {
