@@ -3,10 +3,10 @@ var Module = (() => {
   var _scriptDir = import.meta.url;
   
   return (
-async function(Module) {
-  Module = Module || {};
+async function(Module = {}) {
+  //Module = Module || {};
 
-var Module = typeof Module != "undefined" ? Module : {};
+//var Module = typeof Module != "undefined" ? Module : {};
 
 var readyPromiseResolve, readyPromiseReject;
 

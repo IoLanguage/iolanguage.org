@@ -54,6 +54,7 @@
         display: flex;
         margin: auto;
         line-height: 1.1em;
+        height: fit-content;
       }
 
       .resultarrow {
@@ -136,6 +137,8 @@
         padding-left: 0.5em;
         padding-right: 0.5em;
         width: fit-content;
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
       }
 
       .button:hover {
@@ -148,6 +151,7 @@
       }
 
       .input {
+        white-space: pre-line;
         color: white; 
         background-color: transparent; 
         border-color: #444; 
@@ -169,6 +173,7 @@
     }
 
     .output {
+      white-space: pre-line;
       font-family: helvetica, sans;
       font-weight: bold;
       font-size: 1em;
@@ -198,6 +203,12 @@
       text-transform: uppercase;
       outline: none;
       user-select: none;
+      border-radius: 0px;
+      -webkit-appearance:none; 
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      padding-top: 0em;
+      padding-bottom: 0em;
     }
 
       </style>
@@ -237,7 +248,7 @@
 </div>
   <form>
     <div class="inputsection">
-      <textarea class="input" id="input"></textarea>
+      <textarea class="input" id="input" spellcheck="false"></textarea>
     </div>
     <br>
     <input class="button" type="button" value="EVAL" onclick="IoRepl.shared().onInput()" title="CMD+RETURN">
@@ -256,14 +267,8 @@
     </select>
   </form>
   <br>
-  <!--
-  <div class=""help_section" style="border: 1px solid #222; width: fit-content;">
-    <div class="help">CMD+RETURN →  EVAL</div>
-    <div class="help">CMD+SHIFT+K →  CLEAR OUTPUT</div>
-    <div class="help">CMD+K →  CLEAR INPUT</div>
-  </div>
-  -->
-  <table cellpadding="3" cellspacing="0" width="fit-content" style="border: 1px solid #444;" rules="none">
+
+  <table cellpadding="0" cellspacing="0" width="fit-content" style="border: 1px solid #444;" rules="none">
   <tbody> 
     <tr> 
       <td>EVAL</td>

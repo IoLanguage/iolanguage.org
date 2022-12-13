@@ -1,6 +1,6 @@
-"use strict";
+//"use strict";
 
-var Module = {
+var MyModule = {
   preRun: [],
   postRun: [],
   'printErr': function(text) { 
@@ -33,30 +33,67 @@ var Module = {
     return canvas;
   })(),
   setStatus: function(text) {
-    //console.log("setStatus:", text);
+    console.log("setStatus:", text);
     //IoRepl.shared().statusElement().innerHTML += "."
   },
   totalDependencies: 0,
   monitorRunDependencies: function(left) {
     this.totalDependencies = Math.max(this.totalDependencies, left);
-    Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+    MyModule.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
   },
   onRuntimeInitialized: function () {
-    IoRepl.shared().run()
+    console.log("onRuntimeInitialized")
+    clearTimeout(window.loadTimeout);
+    window.loadTimeout = null;
+    IoRepl.shared().run();
   }
 };
 
+const statusElement = document.getElementById('status');
+
+window.loadTimeout = setTimeout(() => {
+  if (MyModule._IoState_new == undefined) {
+    console.log("loadTimeout")
+    statusElement.style.color = "orange"
+    statusElement.innerHTML = "Interpreter failed to load.<br>"
+    if (window.safari !== undefined) {
+      statusElement.innerHTML += "This may be an issue with the Safari web browser."
+    }
+  }
+}, 10*1000)
+
 import initModule from "./iovm.js";
-initModule(Module);
+initModule(MyModule);
+
+/*
+const m = initModule(MyModule);
+if (m) { 
+  //debugger;
+  m.then((Module) => {
+    console.log("after then has Module._IoState_new:",  Module._IoState_new !== undefined)
+    for (let [key, value] of Object.entries(Module)) {
+      if (!MyModule.hasOwnProperty(key)) {
+        MyModule[key] = Module[key]
+      }
+      //Module[key] = MyModule[key]
+    }
+    MyModule = Module
+    //IoRepl.shared().run();
+  })
+}
+*/
+
+
 
 // ---------------------------------------------------------------------
 
+/*
 if (!window.chrome) {
   const e = document.getElementById('status');
   e.innerHTML = "Sorry, this currently only works with the Chrome browser."
   e.style.color = "orange"
 }
-
+*/
 
 (class IoRepl extends Base {
   initPrototype () {
@@ -75,7 +112,7 @@ if (!window.chrome) {
   }
 
   onKeyDown (event) {
-    console.log("down  ", event.keyCode, " meta: ", event.metaKey)
+    //console.log("down  ", event.keyCode, " meta: ", event.metaKey)
 
     const returnKeyCode = 13;
     const upArrowKeyCode = 38;
@@ -123,16 +160,21 @@ if (!window.chrome) {
     return document.getElementById('repl');
   }
 
+  resetIoState () {
+    this.setIoState(this.newIoState())
+  }
+
   newIoState () {
-    const ioState = Module._IoState_new()
-    Module._IoState_init(ioState);
+    this.cleanup()
+    const ioState = MyModule._IoState_new()
+    MyModule._IoState_init(ioState);
     return ioState
   }
 
   cleanup () {
     const ioState = this.ioState()
     if (ioState) {
-      Module._IoState_free(ioState)
+      MyModule._IoState_free(ioState)
       this.setIoState(null)
     }
   }
@@ -143,12 +185,7 @@ if (!window.chrome) {
     this.replElement().style.opacity = 1
     this.replElement().style.animation = "fadein 2s"
     this.inputElement().value = '"Hello world!"'
-
-    /*
-    console.log("IoRepl run")
-    this.eval("m := method(call message name); m println")
-    this.eval("(1+1) println")
-    */
+    this.inputElement().focus()
   }
 
   onInput () {
@@ -168,21 +205,27 @@ if (!window.chrome) {
   }
 
   eval (jsString) {
-    this.addResultElement(jsString)
-    //const runString = jsString
-    const runString = "(" + jsString + ") println"
-    console.log("eval: ", runString)
-    this.setIsEvaling(true)
-    const ioState = this.ioState()
-    const ioLobby = Module._IoState_lobby(ioState);    
-    const cString = Module.allocateUTF8(runString); 
-    const cLabel = Module.allocateUTF8("command line code"); 
-    const result =  Module._IoState_on_doCString_withLabel_(ioState, ioLobby, cString, cLabel);
-    Module._free(cString);
-    Module._free(cLabel);
-    this.setIsEvaling(false)
-    //console.log("result:", result)
-    window.scrollTo(0, document.body.scrollHeight);
+    try {
+      this.addResultElement(jsString)
+      //const runString = jsString
+      const runString = "(" + jsString + ") println"
+      console.log("eval: ", runString)
+      this.setIsEvaling(true)
+      const ioState = this.ioState()
+      const ioLobby = MyModule._IoState_lobby(ioState);    
+      const cString = MyModule.allocateUTF8(runString); 
+      const cLabel = MyModule.allocateUTF8("command line code"); 
+      const result =  MyModule._IoState_on_doCString_withLabel_(ioState, ioLobby, cString, cLabel);
+      MyModule._free(cString);
+      MyModule._free(cLabel);
+      this.setIsEvaling(false)
+      //console.log("result:", result)
+      window.scrollTo(0, document.body.scrollHeight);
+      this.inputElement().focus()
+    } catch (e) {
+      this.addOutput("" + e)
+      this.resetIoState()
+    }
   }
 
   addInput (text) {
