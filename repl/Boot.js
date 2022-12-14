@@ -7,6 +7,7 @@ class Boot extends Object {
       "shared/Base/getGlobalThis.js",
       "shared/Base/Base.js",
       "shared/Base/Type.js",
+      "WasmLoader.js",
       "IoRepl.js"
     ]
   }

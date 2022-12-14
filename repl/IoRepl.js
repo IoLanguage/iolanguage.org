@@ -1,88 +1,3 @@
-//"use strict";
-
-var MyModule = {
-  preRun: [],
-  postRun: [],
-  'printErr': function(text) { 
-    console.log('stderr: ' + text) 
-  },
-  print: (function() {
-    var element = document.getElementById('output');
-    if (element) element.value = ''; // clear browser cache
-    return function(text) {
-      if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-      // These replacements are necessary if you render to raw HTML
-      text = text.replace(/&/g, "&amp;");
-      text = text.replace(/</g, "&lt;");
-      text = text.replace(/>/g, "&gt;");
-      text = text.replace('\n', '<br>', 'g');
-      console.log(text);
-      if (element) {
-        element.value += text + "\n";
-        element.scrollTop = element.scrollHeight; // focus on bottom
-      }
-      IoRepl.shared().addOutput(text)
-    };
-  })(),
-  canvas: (function() {
-    var canvas = document.getElementById('canvas');
-    // As a default initial behavior, pop up an alert when webgl context is lost. To make your
-    // application robust, you may want to override this behavior before shipping!
-    // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
-    canvas.addEventListener("webglcontextlost", function(e) { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
-    return canvas;
-  })(),
-  setStatus: function(text) {
-    console.log("setStatus:", text);
-    //IoRepl.shared().statusElement().innerHTML += "."
-  },
-  totalDependencies: 0,
-  monitorRunDependencies: function(left) {
-    this.totalDependencies = Math.max(this.totalDependencies, left);
-    MyModule.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
-  },
-  onRuntimeInitialized: function () {
-    console.log("onRuntimeInitialized")
-    clearTimeout(window.loadTimeout);
-    window.loadTimeout = null;
-    IoRepl.shared().run();
-  }
-};
-
-const statusElement = document.getElementById('status');
-
-window.loadTimeout = setTimeout(() => {
-  if (MyModule._IoState_new == undefined) {
-    console.log("loadTimeout")
-    statusElement.style.color = "orange"
-    statusElement.innerHTML = "Interpreter failed to load.<br>"
-    if (window.safari !== undefined) {
-      statusElement.innerHTML += "This may be an issue with the Safari web browser."
-    }
-  }
-}, 10*1000)
-
-import initModule from "./iovm.js";
-initModule(MyModule);
-
-/*
-const m = initModule(MyModule);
-if (m) { 
-  //debugger;
-  m.then((Module) => {
-    console.log("after then has Module._IoState_new:",  Module._IoState_new !== undefined)
-    for (let [key, value] of Object.entries(Module)) {
-      if (!MyModule.hasOwnProperty(key)) {
-        MyModule[key] = Module[key]
-      }
-      //Module[key] = MyModule[key]
-    }
-    MyModule = Module
-    //IoRepl.shared().run();
-  })
-}
-*/
-
 
 
 // ---------------------------------------------------------------------
@@ -95,8 +10,18 @@ if (!window.chrome) {
 }
 */
 
+
 (class IoRepl extends Base {
+
+  static launch () {
+    const w = WasmLoader.shared()
+    w.setPath("./iovm.js")
+    w.setDelegate(IoRepl.shared())
+    w.load()
+  }
+
   initPrototype () {
+    this.newSlot("wasmLoader", null)
     this.newSlot("ioState", null)
     this.newSlot("isEvaling", false)
     this.newSlot("history", null)
@@ -106,38 +31,58 @@ if (!window.chrome) {
   init () {
       super.init()
       this.setHistory([])
-      this.setIoState(this.newIoState())
       this.inputElement().addEventListener("keydown", (event) => { this.onKeyDown(event); })
       //this.inputElement().addEventListener("keyup", (event) => { this.onKeyUp(event); })
   }
 
-  onKeyDown (event) {
-    //console.log("down  ", event.keyCode, " meta: ", event.metaKey)
+  // --- WasmLoader protocol ---
 
+  onWasmLoaded () {
+    this.run()
+  }
+
+  onStandardError () {
+    const s = Array.prototype.slice.call(arguments).join(' ');
+    this.addOutput("STDERR: " + s)
+    this.lastErrorElement().innerHTML += s
+  }
+
+  onStandardOutput (s) {
+    this.addOutput(s)
+  }
+
+  // --- keyboard controls ---
+
+  onKeyDown (event) {
+    const k = event.keyCode 
+    //console.log("down  ", k)
     const returnKeyCode = 13;
     const upArrowKeyCode = 38;
     const downArrowKeyCode = 40;
     const kKeyCode = 75;
+    const uKeyCode = 85;
+    const isClearKey = k == kKeyCode || k == uKeyCode
+    const isSuper = event.metaKey || event.ctrlKey
 
-    if (event.keyCode == returnKeyCode && event.metaKey) {
+    if (k == returnKeyCode && isSuper) {
       this.onInput()
       this.clearInput()
       event.preventDefault()
     }
 
-    if (event.keyCode == upArrowKeyCode && event.metaKey) {
+    if (k == upArrowKeyCode && isSuper) {
       this.onCommandUpArrowKey(event)
     }
 
-    if (event.keyCode == downArrowKeyCode && event.metaKey) {
+    if (k == downArrowKeyCode && isSuper) {
       this.onCommandDownArrowKey(event)
     }
 
-    if (event.keyCode == kKeyCode && !event.shiftKey && event.metaKey) {
+    if (isClearKey && event.shiftKey && isSuper) {
       this.clearInput()
     }
 
-    if (event.keyCode == kKeyCode && event.shiftKey && event.metaKey) {
+    if (isClearKey && !event.shiftKey && isSuper) {
       this.clearOutput()
     }
 
@@ -164,22 +109,27 @@ if (!window.chrome) {
     this.setIoState(this.newIoState())
   }
 
+  wasm () {
+    return WasmLoader.shared().module()
+  }
+
   newIoState () {
     this.cleanup()
-    const ioState = MyModule._IoState_new()
-    MyModule._IoState_init(ioState);
+    const ioState = this.wasm()._IoState_new()
+    this.wasm()._IoState_init(ioState);
     return ioState
   }
 
   cleanup () {
     const ioState = this.ioState()
     if (ioState) {
-      MyModule._IoState_free(ioState)
+      this.wasm()._IoState_free(ioState)
       this.setIoState(null)
     }
   }
 
   run () {
+    this.setIoState(this.newIoState())
     this.statusElement().innerHTML = ""
     //this.statusElement().display = "none"
     this.replElement().style.opacity = 1
@@ -212,19 +162,21 @@ if (!window.chrome) {
       console.log("eval: ", runString)
       this.setIsEvaling(true)
       const ioState = this.ioState()
-      const ioLobby = MyModule._IoState_lobby(ioState);    
-      const cString = MyModule.allocateUTF8(runString); 
-      const cLabel = MyModule.allocateUTF8("command line code"); 
-      const result =  MyModule._IoState_on_doCString_withLabel_(ioState, ioLobby, cString, cLabel);
-      MyModule._free(cString);
-      MyModule._free(cLabel);
+      const wasm = this.wasm()
+      const ioLobby = wasm._IoState_lobby(ioState);    
+      const cString = wasm.allocateUTF8(runString); 
+      const cLabel = wasm.allocateUTF8("command line code"); 
+      const result = wasm._IoState_on_doCString_withLabel_(ioState, ioLobby, cString, cLabel);
+      wasm._free(cString);
+      wasm._free(cLabel);
       this.setIsEvaling(false)
       //console.log("result:", result)
       window.scrollTo(0, document.body.scrollHeight);
       this.inputElement().focus()
     } catch (e) {
-      this.addOutput("" + e)
-      this.resetIoState()
+      //this.addOutput("WASM EXCEPTION:" + e)
+      this.lastErrorElement().innerHTML += "" + e
+      //this.resetIoState()
     }
   }
 
@@ -238,7 +190,17 @@ if (!window.chrome) {
 
   addResultElement (text) {    
     const e = document.createElement('div')
-    e.innerHTML = '<div class="replPair" style="animation:fadein 0.5s;">' + text + '<br><div class="resultcontainer"><div class="resultarrow">→</div><div class="result"></div></div></div><br>';
+    let s = '<div class="replPair" style="animation:fadein 0.5s;">' 
+    s += text 
+    s += '<br>'
+    s += '<div class="resultcontainer">'
+    s += '<div class="resultarrow">→</div>'
+    s += '<div class="result"></div>'
+    s += '<div class="error"></div>'
+    s += '</div>'
+    s += '</div>'
+    s += '<br>'
+    e.innerHTML = s;
     this.outputElement().appendChild(e)
   }
 
@@ -250,14 +212,23 @@ if (!window.chrome) {
     return undefined
   }
 
+  lastErrorElement () {
+    const resultElements = document.getElementsByClassName("error");
+    if (resultElements.length) {
+      return resultElements[resultElements.length-1]
+    }
+    return undefined
+  }
+
   onSampleMenu (selectedOption) {
-    this.inputElement().opacity = 0
-    this.inputElement().value = ""
-    this.inputElement().style.animation = ""
+    const e = this.inputElement()
+    e.opacity = 0
+    e.value = ""
+    e.style.animation = ""
     setTimeout(() => {
-      this.inputElement().value = selectedOption.value
-      this.inputElement().opacity = 1
-      this.inputElement().style.animation = "fadein 1s"
+      e.value = selectedOption.value
+      e.opacity = 1
+      e.style.animation = "fadein 1s"
     }, 1)
   }
 
@@ -269,20 +240,4 @@ if (!window.chrome) {
 
 }.initThisClass());
 
-// ---------------------------------------------------------------------
-
-/*
-void IoState_runCLI(IoState *self) {
-printf("run CLI");
-IoObject *result = IoState_on_doCString_withLabel_(
-    self, self->lobby, "CLI run", "IoState_runCLI()");
-IoObject *e = IoCoroutine_rawException(self->currentCoroutine);
-printf("exited CLI with exception %p", (void *)e);
-
-if (e != self->ioNil) {
-    self->exitResult = -1;
-} else if (!self->shouldExit && ISNUMBER(result)) {
-    self->exitResult = CNUMBER(result);
-}
-}
-*/
+IoRepl.launch()
