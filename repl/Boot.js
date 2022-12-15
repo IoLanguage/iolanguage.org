@@ -8,7 +8,8 @@ class Boot extends Object {
       "shared/Base/Base.js",
       "shared/Base/Type.js",
       "WasmLoader.js",
-      "IoRepl.js"
+      "ReplHistory.js",
+      "Repl.js"
     ]
   }
 
@@ -44,7 +45,7 @@ class Boot extends Object {
   }
 
   didFinish () {
-    //IoRepl.launch();
+    //Repl.launch();
   }
 };
 

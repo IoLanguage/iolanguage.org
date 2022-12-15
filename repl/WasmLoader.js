@@ -67,7 +67,7 @@ window.IoWASM = {
       text = text.replace(/>/g, "&gt;");
       text = text.replace('\n', '<br>', 'g');
       console.log(text);
-      IoRepl.shared().addOutput(text)
+      Repl.shared().addOutput(text)
   },
 
   canvas: (function() {
