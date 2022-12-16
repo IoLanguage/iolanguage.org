@@ -58,12 +58,13 @@ if (!window.chrome) {
 
   onKeyDown (event) {
     const k = event.keyCode 
-    //console.log("down  ", k)
+    console.log("down  ", k)
     const returnKeyCode = 13;
     const upArrowKeyCode = 38;
     const downArrowKeyCode = 40;
     const kKeyCode = 75;
     const uKeyCode = 85;
+    const hKeyCode = 72;
     const isClearKey = k == kKeyCode || k == uKeyCode
     const isSuper = event.metaKey || event.ctrlKey
 
@@ -75,18 +76,28 @@ if (!window.chrome) {
 
     if (k == upArrowKeyCode && isSuper) {
       this.inputElement().value = this.history().previous()
+      event.preventDefault()
     }
 
     if (k == downArrowKeyCode && isSuper) {
       this.inputElement().value = this.history().next()
+      event.preventDefault()
     }
 
     if (isClearKey && event.shiftKey && isSuper) {
       this.clearInput()
+      event.preventDefault()
     }
 
     if (isClearKey && !event.shiftKey && isSuper) {
       this.clearOutput()
+      event.preventDefault()
+    }
+
+    if (k == hKeyCode && isSuper) {
+      const e = this.helpSectionElement()
+      e.style.display = e.style.display == "none" ? "block" : "none";
+      event.preventDefault()
     }
 
     this.textAreaAdjust()
@@ -128,6 +139,10 @@ if (!window.chrome) {
       return resultElements[resultElements.length-1]
     }
     return undefined
+  }
+
+  helpSectionElement () {
+    return this.lastElementWithClass("helpsection")
   }
 
   lastResultElement () {
@@ -217,7 +232,7 @@ if (!window.chrome) {
       const wasm = this.wasm()
       const ioLobby = wasm._IoState_lobby(ioState);    
       const cString = wasm.allocateUTF8(runString); 
-      const cLabel = wasm.allocateUTF8("command line code"); 
+      const cLabel = wasm.allocateUTF8("repl"); 
       const result = wasm._IoState_on_doCString_withLabel_(ioState, ioLobby, cString, cLabel);
       wasm._free(cString);
       wasm._free(cLabel);
