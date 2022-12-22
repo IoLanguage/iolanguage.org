@@ -87,7 +87,7 @@
       }
 
       .help {
-        font-size: 0.9em;
+        font-size: 1em;
         font-weight: normal;
         border: #444 0px solid; 
         background-color: transparent; 
@@ -118,7 +118,7 @@
       }
 
       td {
-        font-size: 0.9em;
+        font-size: 1em;
         line-height: 1em;
         font-weight: normal;
         border: #444 0px solid; 
@@ -262,17 +262,18 @@
 <div class=section style="width: 100%; border: none; color: #666;">
  <!-- INPUT -->
 </div>
-  <form>
     <div id="inputsection" class="inputsection">
       <textarea class="input" id="input" spellcheck="false"></textarea>
     </div>
     <br>
-    <input class="button" type="button" value="EVAL" onclick="Repl.shared().onInput()" title="CMD+RETURN">
-    <!--
-    <input class="button" type="button" value="CLEAR OUT" onclick="Repl.shared().clearOutput()" title="CMD+SHIFT+K">
-    <input class="button" type="button" value="CLEAR IN" onclick="Repl.shared().clearInput()" title="CMD+K">
-    -->
-    <select class="button" name="" id="SampleMenu" onchange="Repl.shared().onSampleMenu(this)">
+    <br>
+  
+    <div class="helpsection">
+      <div style=""margin-bottom:0.5em;">
+        <input class="button" type="button" value="EVAL" title="Evaluate expression" onclick="Repl.shared().onInput()">
+        <select class="button" name="" id="SampleMenu" onchange="Repl.shared().onSampleMenu(this)" title="Code samples">
+        <input class="button" type="button" value="SAVE" title="Save system image" onclick="WasmState.shared().store()">
+        <input class="button" type="button" value="LOAD" title="Load system image" onclick="WasmState.shared().load()">
       <option value='"Hello world!"'>Hello World</option>
       <option value='System platform .. " " .. System platformVersion'>System</option>
       <option value='1 + 2'>Math</option>
@@ -287,9 +288,8 @@ if(a == 1, "a is one", "a is not one")'>Conditions</option>
       <option value='Lobby Protos Core'>Core Protos</option>
       <option value='System sleep(2)'>Sleep</option>
     </select>
-  </form>
+  </div>
   <br>
-
   <table cellpadding="0" cellspacing="0" width="fit-content" style="border: 1px solid #444;" rules="none">
   <tbody> 
     <tr> 
@@ -310,6 +310,7 @@ if(a == 1, "a is one", "a is not one")'>Conditions</option>
     </tr>
   </tbody>
   </table>
+  </div>
   <br><br><br>
   </div>
 </div>

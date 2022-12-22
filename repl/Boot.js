@@ -7,7 +7,11 @@ class Boot extends Object {
       "shared/Base/getGlobalThis.js",
       "shared/Base/Base.js",
       "shared/Base/Type.js",
+      "shared/storage/IndexedDBTx.js",
+      "shared/storage/IndexedDBFolder.js",
+      "shared/storage/PersistentAsyncMap.js",
       "WasmLoader.js",
+      "WasmState.js",
       "ReplHistory.js",
       "Repl.js"
     ]

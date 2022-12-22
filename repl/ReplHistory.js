@@ -1,4 +1,5 @@
 
+"use strict";
 
 (class ReplHistory extends Base {
 
@@ -11,6 +12,7 @@
   init () {
       super.init()
       this.setEntries([])
+      this.addEntry("")
   }
 
   // --- WasmLoader protocol ---

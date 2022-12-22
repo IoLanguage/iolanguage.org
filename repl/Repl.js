@@ -1,4 +1,5 @@
 
+"use strict";
 
 // ---------------------------------------------------------------------
 
@@ -32,10 +33,7 @@ if (!window.chrome) {
       this.setHistory(ReplHistory.clone())
       this.inputElement().addEventListener("keydown", (event) => { this.onKeyDown(event); })
       this.inputElement().addEventListener("keyup", (event) => { this.onKeyUp(event); })
-      this.history().addEntry("")
-
       this.inputElement().addEventListener("input", (event) => { this.onInputChange(event); })
-
   }
 
   // --- WasmLoader protocol ---
@@ -58,13 +56,15 @@ if (!window.chrome) {
 
   onKeyDown (event) {
     const k = event.keyCode 
-    console.log("down  ", k)
+    console.log("keydown  code:", k)
     const returnKeyCode = 13;
     const upArrowKeyCode = 38;
     const downArrowKeyCode = 40;
     const kKeyCode = 75;
     const uKeyCode = 85;
     const hKeyCode = 72;
+    const s_KeyCode = 83;
+    const l_KeyCode = 76;
     const isClearKey = k == kKeyCode || k == uKeyCode
     const isSuper = event.metaKey || event.ctrlKey
 
@@ -98,6 +98,14 @@ if (!window.chrome) {
       const e = this.helpSectionElement()
       e.style.display = e.style.display == "none" ? "block" : "none";
       event.preventDefault()
+    }
+
+    if (k == s_KeyCode && isSuper) {
+      WasmState.shared().store()
+    }
+
+    if (k == l_KeyCode && isSuper) {
+      WasmState.shared().load()
     }
 
     this.textAreaAdjust()
@@ -216,7 +224,7 @@ if (!window.chrome) {
     this.addResultElement(jsString)
     this.inputSectionElement().style.opacity = 0.4
     this.lastReplPairElement().style.opacity = 0.4
-    console.log("this.lastReplPairElement().style.opacity = ", this.lastReplPairElement().style.opacity)
+    //console.log("this.lastReplPairElement().style.opacity = ", this.lastReplPairElement().style.opacity)
     // use a timeout so our UI changes can apply before eval begins
     setTimeout(() => { 
       this.justEval(jsString) 
