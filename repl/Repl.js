@@ -12,6 +12,10 @@ if (!window.chrome) {
 */
 
 
+getGlobalThis().onIoMessage = function (jsonString) {
+  console.log("JS: onIoMessage: ", JSON.parse(jsonString))
+};
+
 (class Repl extends Base {
 
   static launch () {
@@ -32,8 +36,8 @@ if (!window.chrome) {
       super.init()
       this.setHistory(ReplHistory.clone())
       this.inputElement().addEventListener("keydown", (event) => { this.onKeyDown(event); })
-      this.inputElement().addEventListener("keyup", (event) => { this.onKeyUp(event); })
-      this.inputElement().addEventListener("input", (event) => { this.onInputChange(event); })
+      this.inputElement().addEventListener("keyup",   (event) => { this.onKeyUp(event); })
+      this.inputElement().addEventListener("input",   (event) => { this.onInputChange(event); })
   }
 
   // --- WasmLoader protocol ---
@@ -44,8 +48,12 @@ if (!window.chrome) {
 
   onStandardError () {
     const s = Array.prototype.slice.call(arguments).join(' ');
-    this.addOutput("STDERR: " + s)
-    this.lastErrorElement().innerHTML += s
+    if (this.lastErrorElement()) {
+      this.addOutput("STDERR: " + s)
+      this.lastErrorElement().innerHTML += s
+    } else {
+      console.log("STDERR: " + s)
+    }
   }
 
   onStandardOutput (s) {
@@ -187,6 +195,8 @@ if (!window.chrome) {
   }
 
   run () {
+    this.statusElement().innerHTML = "Loaded WASM..."
+
     this.setIoState(this.newIoState())
     this.statusElement().innerHTML = ""
     //this.statusElement().display = "none"
@@ -233,7 +243,8 @@ if (!window.chrome) {
 
   justEval (jsString) {
     try {
-      const runString = "(" + jsString + ") println"
+      //const runString = "(" + jsString + ") println"
+      const runString = jsString
       console.log("eval: ", runString)
       this.setIsEvaling(true)
       const ioState = this.ioState()
@@ -242,6 +253,9 @@ if (!window.chrome) {
       const cString = wasm.allocateUTF8(runString); 
       const cLabel = wasm.allocateUTF8("repl"); 
       const result = wasm._IoState_on_doCString_withLabel_(ioState, ioLobby, cString, cLabel);
+
+      //wasm._IoObject_print(result);
+
       wasm._free(cString);
       wasm._free(cLabel);
       this.setIsEvaling(false)
@@ -265,7 +279,11 @@ if (!window.chrome) {
   }
 
   addOutput (text) {
-    this.lastResultElement().innerHTML += text + '<br>';
+    if (this.lastResultElement()) {
+      this.lastResultElement().innerHTML += text + '<br>';
+    } else {
+      console.log(text)
+    }
   }
 
   addResultElement (text) {    
