@@ -57,28 +57,29 @@
     import(url).then((m) => {
       m.default(this.module())
     }).catch((error) => {
-      console.log("error:", error);
+      this.debugLog("error:" + error);
     })
   }
 
   loadWasm () {
     fetch(this.wasmPath()).then((response) => { 
       if (!response.ok) {
+        this.debugLeg("fetch " + response.status)
         throw new Error(response.status);
       }
       return response.arrayBuffer();
     }).then((buffer) => {
-      console.log("loaded " + this.wasmPath() + " into array buffer of size ", buffer.byteLength)
+      this.debugLog("loaded " + this.wasmPath() + " into ArrayBuffer of " + buffer.byteLength + " bytes")
       this.onFetchWasmBuffer(buffer)
     })
   }
 
   onFetchWasmBuffer (arrayBuffer) {
-    console.log(this.type() + " onFetchBuffer ")
+    //this.debugLog(this.type() + " onFetchBuffer ")
     //const s =  String.fromCharCode.apply(null, new Uint16Array(arrayBuffer));
     const s = btoa(arrayBuffer);
     const hash = this.hashOfString(s)
-    console.log("wasmHash:", hash)
+    //this.debugLog("hash of wasm buffer: " + hash)
     this.setWasmHash(hash)
   }
 
@@ -88,6 +89,11 @@
       h = Math.imul(h ^ s.charCodeAt(i), 2654435761);
     }
     return (h ^ h >>> 16) >>> 0;
+  }
+
+  debugLog (s) {
+    console.log(s)
+    alert(s)
   }
 
 }.initThisClass());
