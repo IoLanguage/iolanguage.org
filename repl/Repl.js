@@ -252,7 +252,7 @@ getGlobalThis().onIoMessage = function (jsonString) {
       const ioLobby = wasm._IoState_lobby(ioState);    
       const cString = wasm.allocateUTF8(runString); 
       const cLabel = wasm.allocateUTF8("repl"); 
-      const result = wasm._IoState_on_doCString_withLabel_(ioState, ioLobby, cString, cLabel);
+      wasm._IoState_on_doCString_withLabel_andPrintResult(ioState, ioLobby, cString, cLabel);
 
       //wasm._IoObject_print(result);
 
