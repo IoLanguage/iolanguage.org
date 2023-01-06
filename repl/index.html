@@ -276,9 +276,9 @@
           <option value='System platform .. " " .. System platformVersion'>System</option>
           <option value='1 + 2'>Math</option>
           <option value='b := 2 * 3
-    b'>Variables</option>
+b'>Variables</option>
           <option value='a := 2
-    if(a == 1, "a is one", "a is not one")'>Conditions</option>
+if(a == 1, "a is one", "a is not one")'>Conditions</option>
           <option value='List clone append(30, 10, 5, 20)'>Lists</option>
           <option value='for(i, 1, 10, writeln(i, " "))'>For Loop</option>
           <option value='List clone append(30, 10, 5, 20) foreach(i, v, writeln(i, ": ", v))'>Foreach Loop</option>
@@ -286,6 +286,8 @@
           <option value='Lobby Protos Core'>Core Protos</option>
           <option value='System sleep(2)'>Sleep</option>
         </select>
+        <input class="button" type="button" value="SOURCE" title="Evaluate expression" onclick="s = 'https://github.com/stevedekorte/ioWasm'; window.open(s)">
+
 <!--
         <input class="button" type="button" value="SAVE" title="Save system image" onclick="WasmState.shared().store()">
         <input class="button" type="button" value="LOAD" title="Load system image" onclick="WasmState.shared().load()">
@@ -320,6 +322,10 @@
     </tr>
   </tbody>
   </table>
+  <!--
+  <br>
+  <a href="https://github.com/stevedekorte/ioWasm">ioWasm source on github</a>
+-->
   </div>
   <br><br><br>
   </div>
