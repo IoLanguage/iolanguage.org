@@ -18,11 +18,29 @@ getGlobalThis().onIoToJsMessage = function (jsonString) {
 
 (class Repl extends Base {
 
+  isOnMobileBrowser () {
+    return (navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i) 
+      || navigator.userAgent.match(/iPad/i) 
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i));
+  }
+
   static launch () {
+    Repl.shared().checkForMobile()
+
     const w = WasmLoader.shared()
     w.setPath("./iovm.js")
     w.setDelegate(Repl.shared())
     w.load()
+  }
+
+  checkForMobile () {
+    if (this.isOnMobileBrowser()) {
+      this.statusElement().innerHTML += " (may not work on mobile browsers)"
+    }
   }
 
   initPrototype () {
