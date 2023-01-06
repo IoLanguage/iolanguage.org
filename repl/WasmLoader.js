@@ -64,12 +64,12 @@
   loadWasm () {
     fetch(this.wasmPath()).then((response) => { 
       if (!response.ok) {
-        this.debugLeg("fetch " + response.status)
+        this.debugLog("fetch error: " + response.status)
         throw new Error(response.status);
       }
       return response.arrayBuffer();
     }).then((buffer) => {
-      this.debugLog("loaded " + this.wasmPath() + " into ArrayBuffer of " + buffer.byteLength + " bytes")
+      //this.debugLog("loaded " + this.wasmPath() + " into ArrayBuffer of " + buffer.byteLength + " bytes")
       this.onFetchWasmBuffer(buffer)
     })
   }

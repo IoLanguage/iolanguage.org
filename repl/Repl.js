@@ -12,8 +12,8 @@ if (!window.chrome) {
 */
 
 
-getGlobalThis().onIoMessage = function (jsonString) {
-  console.log("JS: onIoMessage: ", JSON.parse(jsonString))
+getGlobalThis().onIoToJsMessage = function (jsonString) {
+  console.log("JS: onIoToJsMessage: ", JSON.parse(jsonString))
 };
 
 (class Repl extends Base {
