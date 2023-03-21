@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>io tutorial</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="../home.css">
+		<link rel="stylesheet" href="../home_header.css">
+		<link rel="stylesheet" href="../about.css">
+		<link rel="stylesheet" href="../fonts/Helvetica/fonts.css">
+		<script type="module" src="load.js"></script>
+
+		<style>
+		
+		::-webkit-scrollbar {
+			width: 15px;
+			height: 15px;
+		}
+
+		::-webkit-scrollbar-track-piece  {
+			background-color: #191919;
+		}
+
+		::-webkit-scrollbar-thumb:vertical {
+			background-color: #777;
+		}
+
+
+		.section {
+			font-family: "Helvetica Neue Bold", sans-serif;
+		    /*font-weight: 600;*/
+		    padding-top: 15px;
+		    padding-bottom: 15px;
+		    border-top: solid 1px #444;
+		}
+		
+		.code {
+		    white-space: pre-line;
+		    margin-left: 30px;
+		    line-height: 22px;
+		    margin-bottom: 40px;
+		    /*font-weight: 500;*/
+			font-family: "Helvetica Neue", sans-serif;
+		    color: #bbb;
+		    max-width: 600px;
+		    white-space: pre-wrap;
+		}
+		
+		.text {
+		   	animation: fadein 2s;
+		    max-width: 600px;
+        }
+		
+		.result {
+		    display: inline-block;
+		    color: #99c;
+		    margin: 0px;
+		    padding: 0px;
+		    white-space: pre-wrap;
+		}
+		
+		.result::before {
+		    content: '→ ';
+		}
+		
+        @media only screen and (max-width: 475px) {
+		    .code {
+		        font-size: 1em;
+		        margin-left: 0px;
+	        }	        
+        }
+		</style>
+	</head>
+	<body>
+		<div class="container leftSpace">
+    		    <div class="header">
+                	<div class="pageHeader">
+    			        <div class="topSpace"></div>
+    					<div class="pageTitle"><a href="index.html">Io</a></div>
+    					<div class="pageSubtitle"> / samples </div>
+    			    </div>
+    			</div>
+
+				<div class="text" style="padding-top: 40px;">
+           
+					<!--
+<div class=section>Math</div>
+<div class="code">
+1+1
+<div class="result">2</div>
+
+1+1 == 2
+<div class="result">true</div>
+
+2 sqrt
+<div class="result">1.414214</div>
+</div>
+-->
+
+<div id="samples">
+
+</div>
+
+<br><br><br>
+                </div>
+		</div>
+
+	</body>
+</html>

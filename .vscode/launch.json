@@ -6,11 +6,12 @@
     "configurations": [
 
 
+
         {
             "type": "chrome",
             "request": "launch",
             "name": "Launch index.html",
-            "url": "https://localhost:8000/index.html",
+            "url": "http://localhost:8000/index.html",
             "webRoot": "${workspaceFolder}"
         },
 
