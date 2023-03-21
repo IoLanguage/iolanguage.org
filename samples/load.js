@@ -2,20 +2,7 @@
 
 /*
 
-    A Javascript sequential file loader. 
-
-    Loads build/_index.json and build/_cam.json.zip, then
-    evals JS files in _index in order (adding sourceURL comment for debugger).
-	NOTE: sourceURL needs to begin with a / to work with VSCode.
-
-    The loading begins on the window load event.
-
-    Should also post events to load panel.
-
-	Some files in the index will not be in the cam and are left for the app
-	to load over the network (lazily) and perhaps cache using indexeddb. 
-	As the index contains a hash of the file, we can easily check to see if we
-	already have the file cached.
+	Some useful basics
 
 */
 
@@ -306,17 +293,26 @@ class UrlResource {
 
 // ---------------------------------------
 
-UrlResource.clone().setPath("/samples/samples.json").promiseLoad().then((urlResource) => {
-	const element = document.getElementById("samples")
-	const json = urlResource.dataAsJson()
-	let s = ""
-	Reflect.ownKeys(json).sort().forEach(key => {
-		const value = json[key]
-		s += "<div class=section>" + key + "</div>";
-		s += "<div class=code>"
-		s += value
-		s += "</div>"
-		s += "</div>"
+/*
+	Load the samples and insert them into html using a template
+*/
+
+window.onload = function () {
+
+	UrlResource.clone().setPath("/samples/samples.json").promiseLoad().then((urlResource) => {
+		const samplesElement = document.getElementById("samples")
+		samplesElement.innerHtml = ""
+
+		const json = urlResource.dataAsJson()
+		let s = ""
+		Reflect.ownKeys(json).sort().forEach(key => {
+			const value = json[key]
+			s += "<div class=section>" + key + "</div>\n";
+			s += "<div class=code>"
+			s += value
+			s += "</div>\n"
+			s += "</div>\n"
+		})
+		samplesElement.innerHTML = s
 	})
-	element.innerHTML = s
-})
+}
