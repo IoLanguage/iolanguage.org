@@ -13,9 +13,9 @@ writeln("test2: ",
 )
 
 r := "FAILED"
-if( a == "foobar" ) then(
+if(a == "foobar") then(
 	r = "OK"
-) elseif( a == "C" ) then(
+) elseif(a == "C") then(
 	r = "FAILED"
 ) else (
 	r = "FAILED"
@@ -24,9 +24,9 @@ writeln("test3: ", r)
 
 
 r := "FAILED"
-if( a == "A" ) then (
+if(a == "A") then (
 	r = "FAILED"
-) elseif( a == "foobar" ) then (
+) elseif(a == "foobar") then (
 	r = "OK"
 ) else (
 	r = "FAILED"
@@ -34,9 +34,9 @@ if( a == "A" ) then (
 writeln("test4: ", r)
 
 r := "FAILED"
-if( a == "foobar" ) then (
+if(a == "foobar") then (
 	r = "OK"
-) elseif( a == "C" ) then (
+) elseif(a == "C") then (
 	r = "FAILED"
 ) else (
 	r = "FAILED"
