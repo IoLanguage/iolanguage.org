@@ -307,6 +307,7 @@ window.onload = function () {
 		let s = ""
 		Reflect.ownKeys(json).sort().forEach(key => {
 			const value = json[key]
+			s += "<div class=bar></div>"
 			s += "<div class=section>" + key + "</div>\n";
 			s += "<div class=code>"
 			s += value
