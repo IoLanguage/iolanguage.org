@@ -300,8 +300,8 @@ class UrlResource {
 window.onload = function () {
 
 	UrlResource.clone().setPath("/samples/samples.json").promiseLoad().then((urlResource) => {
-		const samplesElement = document.getElementById("samples")
-		samplesElement.innerHtml = ""
+		const e = document.getElementById("samples")
+		e.innerHtml = ""
 
 		const json = urlResource.dataAsJson()
 		let s = ""
@@ -314,6 +314,6 @@ window.onload = function () {
 			s += "</div>\n"
 			s += "</div>\n"
 		})
-		samplesElement.innerHTML = s
+		e.innerHTML = s
 	})
 }
