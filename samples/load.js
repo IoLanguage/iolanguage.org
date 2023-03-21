@@ -310,7 +310,7 @@ UrlResource.clone().setPath("/samples/samples.json").promiseLoad().then((urlReso
 	const element = document.getElementById("samples")
 	const json = urlResource.dataAsJson()
 	let s = ""
-	Reflect.ownKeys(json).forEach(key => {
+	Reflect.ownKeys(json).sort().forEach(key => {
 		const value = json[key]
 		s += "<div class=section>" + key + "</div>";
 		s += "<div class=code>"
