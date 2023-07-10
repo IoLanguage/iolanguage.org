@@ -1993,7 +1993,7 @@ void Dictionary_key_value_(Dictionary *self,
 int main(int argc, const char *argv[]) {
     IoState *self = IoState_new();
     IoState_init(self);
-    IoState_doCString_(self, "writeln(\"hello world!\"");
+    IoState_doCString_(self, "writeln(\"hello world!\")");
     IoState_free(self);
     return 0;
 }
