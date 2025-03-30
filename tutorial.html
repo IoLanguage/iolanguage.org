@@ -367,7 +367,7 @@ assert(1 == 3)
 		isValid := method(errors size == 0)
 
 		assertValid := method(
-			if (emptyFields size, 
+			if (emptyFields size != 0,
 				Exception raise(
 				   self type .. " missing: " .. emptyFields join(", ")
 				)
