@@ -1,6 +1,6 @@
 
 .topSpace {
-    padding-top: 180px;
+    padding-top: 90px;
 }
 
 .leftSpace {
@@ -74,8 +74,8 @@
         margin-top: 0.6em;
 	}
 	
-	.topSpace { 
-	    padding-top: 3.3em;
+	.topSpace {
+	    padding-top: 1.65em;
 	}
 
     .leftSpace {
@@ -99,7 +99,7 @@
 	}
 	
     .topSpace {
-        padding-top: 1.6em;
+        padding-top: 0.8em;
     }
     
     .leftSpace {
@@ -123,7 +123,7 @@
 	}
 	
     .topSpace {
-        padding-top: 2em;
+        padding-top: 1em;
     }
     
     .leftSpace {
